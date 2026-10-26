@@ -136,12 +136,13 @@ select.chip{appearance:none;padding-right:28px;background-image:linear-gradient(
 .study-progress .bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
 .study-progress .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s ease}
 .study-progress .meta{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:6px;font-weight:700}
-.flashcard{perspective:1400px;width:100%;height:390px;min-height:330px;margin:6px 0 14px;cursor:pointer;user-select:none;-webkit-user-select:none}
-.card-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
-.flashcard.flipped .card-inner{transform:rotateY(180deg)}
-.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;padding:20px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
+.flashcard{width:100%;height:390px;min-height:330px;margin:6px 0 14px;cursor:pointer;user-select:none;-webkit-user-select:none}
+.card-inner{position:relative;width:100%;height:100%}
+.card-face{position:absolute;inset:0;border-radius:28px;padding:20px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;opacity:1;transform:translateY(0);transition:opacity .22s ease,transform .22s ease;will-change:opacity,transform;z-index:2}
 .card-face:before{content:"";position:absolute;right:-70px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,var(--accent-soft),transparent 68%);pointer-events:none}
-.card-face.back{transform:rotateY(180deg);background:linear-gradient(160deg,var(--card),var(--card2))}
+.card-face.back{opacity:0;transform:translateY(10px);pointer-events:none;z-index:3;background:linear-gradient(160deg,var(--card),var(--card2))}
+.flashcard.flipped .card-face.front{opacity:0;transform:translateY(-10px);pointer-events:none}
+.flashcard.flipped .card-face.back{opacity:1;transform:translateY(0);pointer-events:auto}
 .card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:1}
 .unit-pill{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:6px 10px;font-size:10.5px;font-weight:800;letter-spacing:.3px}
 .speak{width:38px;height:38px;border-radius:13px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;color:var(--text2)}
