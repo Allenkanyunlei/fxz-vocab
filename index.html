@@ -232,7 +232,7 @@ select.chip{appearance:none;padding-right:28px;background-image:linear-gradient(
 .guide code{background:var(--card2);padding:2px 5px;border-radius:5px;font-size:11px}
 .tabbar{
   position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:560px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:8px 6px calc(8px + env(safe-area-inset-bottom));
   background:var(--card);
   background:color-mix(in srgb,var(--card) 88%,transparent);
   -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
@@ -257,6 +257,36 @@ body.focus .tabbar{display:none}
 .empty{text-align:center;color:var(--muted);font-size:12.5px;padding:36px 12px;line-height:1.7}
 .empty b{display:block;color:var(--text);font-size:15px;margin-bottom:4px}
 .footer-note{text-align:center;font-size:10px;color:var(--muted);line-height:1.6;margin-top:26px;padding-bottom:4px}
+.kp-hero{background:linear-gradient(150deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:var(--shadow);margin-top:10px}
+.kp-hero .h2{font-size:22px}
+.kp-unit{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:8px}
+.kp-unit:active{transform:scale(.99)}
+.kp-unit .n{font-size:13px;font-weight:800}
+.kp-unit .m{font-size:10.5px;color:var(--muted);margin-top:3px}
+.kp-qcard{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:20px;box-shadow:var(--shadow);margin-top:6px}
+.kp-q{font-size:24px;line-height:1.45;font-weight:850;letter-spacing:-.4px}
+.kp-a{font-size:15px;line-height:1.8;color:var(--text2);margin-top:14px;padding-top:14px;border-top:1px solid var(--line)}
+.kp-note{font-size:12px;line-height:1.7;color:var(--muted);margin-top:10px;background:var(--card2);border-radius:12px;padding:10px 12px}
+.kp-src{font-size:10.5px;color:var(--muted);margin-top:10px}
+.slide-img{width:100%;display:block;border-radius:14px;border:1px solid var(--line);background:#fff}
+.slide-cap{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6}
+.reward-overlay{position:fixed;inset:0;z-index:120;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(8,12,16,.72);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.reward-overlay.show{display:flex}
+.reward-card{width:100%;max-width:360px;background:var(--card);border-radius:26px;padding:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);animation:pop .28s cubic-bezier(.2,.9,.2,1.1);text-align:center}
+@keyframes pop{from{transform:scale(.86);opacity:.4}to{transform:scale(1);opacity:1}}
+.reward-img{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:var(--card2)}
+.reward-meta{display:flex;align-items:center;justify-content:center;gap:7px;margin-top:10px;font-size:11px;color:var(--muted)}
+.reward-meta b{color:var(--text);font-size:13px}
+.reward-quote{font-size:16px;font-weight:850;margin-top:6px;letter-spacing:-.3px}
+.reward-close{margin-top:10px;width:100%}
+.reward-badge{display:inline-block;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:3px 9px;font-size:10px;font-weight:800}
+.reward-badge.bad{background:var(--red-soft);color:var(--red)}
+.random-top{display:flex;align-items:center;gap:10px;padding:4px 0 12px}
+.random-card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px 20px;box-shadow:var(--shadow);min-height:300px;display:flex;flex-direction:column}
+.random-type{font-size:10.5px;font-weight:800;color:var(--accent);letter-spacing:.8px}
+.random-prompt{font-size:30px;line-height:1.35;font-weight:850;letter-spacing:-.8px;margin:16px 0;word-break:break-word}
+.random-prompt.cn{font-size:25px}
+.random-answer{font-size:14px;line-height:1.85;color:var(--text2);margin-top:6px;padding-top:14px;border-top:1px solid var(--line)}
 @media (max-width:360px){
   #view{padding-left:13px;padding-right:13px}
   .term{font-size:33px}
@@ -273,18 +303,34 @@ body.focus .tabbar{display:none}
 <nav class="tabbar" id="tabbar">
   <button class="tab" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg><span>学习</span></button>
   <button class="tab" data-tab="library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5z"/><path d="M8 7h8M8 11h6"/></svg><span>词库</span></button>
-  <button class="tab" data-tab="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9a3 3 0 1 1 4.5 2.6c-.9.6-1.5 1.2-1.5 2.4"/><circle cx="12" cy="17.5" r=".6" fill="currentColor" stroke="none"/><path d="M4 4h16v16H4z"/></svg><span>测验</span></button>
+  <button class="tab" data-tab="knowledge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V17h5.2v-1.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg><span>知识</span></button>
+  <button class="tab" data-tab="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4.5 13.5H11l-1 8.5L19.5 10H13z"/></svg><span>抽背</span></button>
   <button class="tab" data-tab="me"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg><span>我的</span></button>
 </nav>
 <div class="toast" id="toast"></div>
 <div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()"><div class="sheet-card" id="sheetCard"></div></div>
+<div class="reward-overlay" id="rewardOverlay" onclick="closeReward()">
+  <div class="reward-card" onclick="event.stopPropagation()">
+    <img class="reward-img" id="rewardImg" alt="">
+    <div class="reward-meta"><span class="reward-badge" id="rewardBadge">奖励</span><b id="rewardName"></b><span id="rewardSeries"></span></div>
+    <div class="reward-quote" id="rewardQuote"></div>
+    <button class="btn primary reward-close" onclick="closeReward()">继续</button>
+  </div>
+</div>
 
 <script>
 const UNITS = [{"id":"u1","name":"绪论与研究技术","short":"绪论"},{"id":"u2","name":"上皮组织","short":"上皮"},{"id":"u3","name":"结缔组织","short":"结缔"},{"id":"u4","name":"肌组织","short":"肌组织"},{"id":"u5","name":"软骨·骨·血液","short":"软骨骨血"},{"id":"u6","name":"细胞的化学组成","short":"化学组成"},{"id":"u7","name":"蛋白质","short":"蛋白质"},{"id":"u8","name":"核酸","short":"核酸"},{"id":"u9","name":"细胞膜与细胞骨架","short":"膜与骨架"},{"id":"u10","name":"内膜系统与细胞器","short":"内膜系统"},{"id":"u11","name":"线粒体","short":"线粒体"},{"id":"u12","name":"细胞核","short":"细胞核"}];
 const DATA = [{"u":"u1","t":"tissue","zh":"组织","note":"形态相似、功能相关的细胞和细胞外基质构成"},{"u":"u1","t":"histology","zh":"组织学","note":"研究正常人体微细结构及其相关功能"},{"u":"u1","t":"cell","zh":"细胞","note":"机体结构和功能的基本单位"},{"u":"u1","t":"organ","zh":"器官","note":"几种组织组合成具有一定形态和功能的结构"},{"u":"u1","t":"organ system","zh":"器官系统","note":"多个器官协同完成连续功能"},{"u":"u1","t":"primary tissue","zh":"基本组织","note":"上皮、结缔、肌、神经四大类"},{"u":"u1","t":"light microscope (LM)","zh":"光学显微镜","note":"分辨率约 0.2 μm"},{"u":"u1","t":"electron microscope (EM)","zh":"电子显微镜","note":"分辨率可达 0.2 nm"},{"u":"u1","t":"resolution","zh":"分辨率","note":"能分辨两点之间的最小距离"},{"u":"u1","t":"hematoxylin-eosin staining (H-E)","zh":"苏木精-伊红染色","note":"嗜碱性染成紫蓝，嗜酸性染成粉红"},{"u":"u1","t":"periodic acid-Schiff reaction (PAS)","zh":"过碘酸-希夫反应","note":"显示糖类，阳性为紫红色沉淀"},{"u":"u1","t":"immunohistochemistry","zh":"免疫组织化学","note":"利用抗原-抗体特异结合定位"},{"u":"u1","t":"immunofluorescence","zh":"免疫荧光","note":"荧光标记抗体显示抗原分布"},{"u":"u1","t":"confocal microscopy","zh":"激光扫描共聚焦显微镜","note":"光学切片与三维重建"},{"u":"u1","t":"transmission electron microscopy (TEM)","zh":"透射电镜","note":"观察细胞内部超微结构"},{"u":"u1","t":"scanning electron microscopy (SEM)","zh":"扫描电镜","note":"观察细胞或组织表面立体形态"},{"u":"u1","t":"cryo-electron microscopy (Cryo-EM)","zh":"冷冻电镜","note":"近原子分辨率解析生物大分子结构"},{"u":"u1","t":"cell theory","zh":"细胞学说","note":"细胞是生物体结构和功能的基本单位"},{"u":"u2","t":"covering epithelium","zh":"被覆上皮","note":"覆盖体表或衬贴管腔、囊腔"},{"u":"u2","t":"simple squamous epithelium","zh":"单层扁平上皮","note":"薄，利于物质交换"},{"u":"u2","t":"simple cuboidal epithelium","zh":"单层立方上皮","note":"见于肾小管、甲状腺滤泡等"},{"u":"u2","t":"simple columnar epithelium","zh":"单层柱状上皮","note":"以吸收和分泌为主"},{"u":"u2","t":"stratified squamous epithelium","zh":"复层扁平上皮","note":"耐摩擦，起保护作用"},{"u":"u2","t":"transitional epithelium","zh":"变移上皮","note":"排尿管道，细胞层数随充盈变化"},{"u":"u2","t":"endothelium","zh":"内皮","note":"衬贴心血管和淋巴管腔面"},{"u":"u2","t":"mesothelium","zh":"间皮","note":"衬贴胸膜、腹膜和心包腔面"},{"u":"u2","t":"microvillus","zh":"微绒毛","note":"游离面指状突起，扩大吸收面积"},{"u":"u2","t":"cilium","zh":"纤毛","note":"可摆动，核心为“9+2”微管结构"},{"u":"u2","t":"stereocilia","zh":"静纤毛","note":"长而不动，实为微绒毛，见于附睾等"},{"u":"u2","t":"cell coat","zh":"细胞衣","note":"即糖萼/糖衣，参与黏附与识别"},{"u":"u2","t":"tight junction","zh":"紧密连接","note":"封闭细胞间隙，形成屏障"},{"u":"u2","t":"intermediate junction","zh":"中间连接","note":"黏着连接，维持细胞形态"},{"u":"u2","t":"desmosome","zh":"桥粒","note":"牢固连接，耐机械张力"},{"u":"u2","t":"gap junction","zh":"缝隙连接","note":"连接子通道，介导细胞间通讯"},{"u":"u2","t":"hemidesmosome","zh":"半桥粒","note":"上皮细胞基底面与基膜的连接"},{"u":"u2","t":"basement membrane","zh":"基膜","note":"上皮与结缔组织之间的支持层"},{"u":"u2","t":"basal lamina","zh":"基板","note":"基膜的致密层，含IV型胶原等"},{"u":"u2","t":"plasma membrane infolding","zh":"质膜内褶","note":"基底面内陷，扩大物质交换面积"},{"u":"u2","t":"junctional complex","zh":"连接复合体","note":"紧密连接、中间连接和桥粒依次出现"},{"u":"u2","t":"glandular epithelium","zh":"腺上皮","note":"以分泌为主要功能的上皮"},{"u":"u2","t":"acinus","zh":"腺泡","note":"浆液性腺的分泌单位"},{"u":"u2","t":"goblet cell","zh":"杯状细胞","note":"分泌黏液，PAS 阳性"},{"u":"u3","t":"mesenchyme","zh":"间充质","note":"胚胎性结缔组织，中胚层来源"},{"u":"u3","t":"connective tissue proper","zh":"固有结缔组织","note":"疏松、致密、网状和脂肪组织"},{"u":"u3","t":"loose connective tissue","zh":"疏松结缔组织","note":"细胞少、纤维疏松、基质多"},{"u":"u3","t":"dense connective tissue","zh":"致密结缔组织","note":"纤维多而密，支持连接为主"},{"u":"u3","t":"collagenous fiber","zh":"胶原纤维","note":"I/III 型胶原，嗜酸性，有横纹"},{"u":"u3","t":"elastic fiber","zh":"弹性纤维","note":"弹性蛋白加微原纤维，可回弹"},{"u":"u3","t":"reticular fiber","zh":"网状纤维","note":"III 型胶原，嗜银性，构成支架"},{"u":"u3","t":"ground substance","zh":"基质","note":"无定形，含蛋白多糖和糖蛋白"},{"u":"u3","t":"tissue fluid","zh":"组织液","note":"血浆滤过形成，物质交换媒介"},{"u":"u3","t":"fibroblast","zh":"成纤维细胞","note":"合成胶原和基质"},{"u":"u3","t":"macrophage","zh":"巨噬细胞","note":"吞噬、抗原提呈"},{"u":"u3","t":"plasma cell","zh":"浆细胞","note":"来自 B 细胞，分泌抗体"},{"u":"u3","t":"mast cell","zh":"肥大细胞","note":"释放组胺、肝素，参与过敏"},{"u":"u3","t":"adipocyte","zh":"脂肪细胞","note":"储存脂滴，分泌脂肪因子"},{"u":"u3","t":"monocyte","zh":"单核细胞","note":"巨噬细胞的前体"},{"u":"u3","t":"chemotaxis","zh":"趋化性","note":"沿化学梯度定向迁移"},{"u":"u3","t":"antigen-presenting cell (APC)","zh":"抗原提呈细胞","note":"提呈抗原给 T 细胞"},{"u":"u3","t":"collagen","zh":"胶原蛋白","note":"细胞外基质主要结构蛋白"},{"u":"u3","t":"adipose tissue","zh":"脂肪组织","note":"储存脂肪、保温、内分泌"},{"u":"u3","t":"adipokine","zh":"脂肪因子","note":"脂肪细胞分泌的活性分子"},{"u":"u3","t":"leptin","zh":"瘦素","note":"调节食欲和能量平衡"},{"u":"u3","t":"niche","zh":"微环境/龛","note":"干细胞所处的特殊微环境"},{"u":"u4","t":"muscle fiber","zh":"肌纤维","note":"肌细胞，细长形"},{"u":"u4","t":"sarcoplasm","zh":"肌质","note":"肌细胞质"},{"u":"u4","t":"sarcolemma","zh":"肌膜","note":"肌细胞膜"},{"u":"u4","t":"sarcoplasmic reticulum","zh":"肌质网","note":"储存和释放 Ca²⁺"},{"u":"u4","t":"myofibril","zh":"肌原纤维","note":"肌纤维内的收缩装置"},{"u":"u4","t":"isotropic band (I band)","zh":"明带","note":"仅细肌丝，各向同性"},{"u":"u4","t":"anisotropic band (A band)","zh":"暗带","note":"粗肌丝所在，各向异性"},{"u":"u4","t":"sarcomere","zh":"肌节","note":"相邻 Z 线之间，收缩基本单位"},{"u":"u4","t":"thick filament","zh":"粗肌丝","note":"由肌球蛋白组成"},{"u":"u4","t":"thin filament","zh":"细肌丝","note":"由肌动蛋白、原肌球蛋白和肌钙蛋白组成"},{"u":"u4","t":"myosin","zh":"肌球蛋白","note":"粗肌丝主要蛋白，具 ATP 酶活性"},{"u":"u4","t":"actin","zh":"肌动蛋白","note":"细肌丝主要蛋白"},{"u":"u4","t":"tropomyosin","zh":"原肌球蛋白","note":"遮挡肌动蛋白上的结合位点"},{"u":"u4","t":"troponin","zh":"肌钙蛋白","note":"结合 Ca²⁺，触发收缩"},{"u":"u4","t":"transverse tubule","zh":"横小管","note":"肌膜内陷，传导兴奋"},{"u":"u4","t":"terminal cisternae","zh":"终池","note":"肌质网膨大，储存 Ca²⁺"},{"u":"u4","t":"triad","zh":"三联体","note":"横小管加两侧终池"},{"u":"u4","t":"intercalated disk","zh":"闰盘","note":"心肌细胞间的连接结构"},{"u":"u4","t":"skeletal muscle","zh":"骨骼肌","note":"随意肌，多核，横纹明显"},{"u":"u4","t":"cardiac muscle","zh":"心肌","note":"有横纹和闰盘，不随意"},{"u":"u4","t":"smooth muscle","zh":"平滑肌","note":"无横纹，梭形细胞"},{"u":"u4","t":"red fiber","zh":"红肌纤维","note":"氧化代谢强，耐疲劳"},{"u":"u4","t":"white fiber","zh":"白肌纤维","note":"糖酵解强，收缩快"},{"u":"u5","t":"cartilage","zh":"软骨","note":"软骨细胞、基质和纤维构成"},{"u":"u5","t":"chondrocyte","zh":"软骨细胞","note":"位于软骨陷窝内"},{"u":"u5","t":"isogenous group","zh":"同源细胞群","note":"一个软骨细胞分裂形成的小群"},{"u":"u5","t":"cartilage lacuna","zh":"软骨陷窝","note":"软骨细胞所在的小腔"},{"u":"u5","t":"hyaline cartilage","zh":"透明软骨","note":"II 型胶原，见于关节软骨等"},{"u":"u5","t":"elastic cartilage","zh":"弹性软骨","note":"弹性纤维丰富，见于耳廓等"},{"u":"u5","t":"fibrocartilage","zh":"纤维软骨","note":"胶原纤维束多，见于椎间盘等"},{"u":"u5","t":"bone matrix","zh":"骨基质","note":"有机质和骨盐构成"},{"u":"u5","t":"osteoid","zh":"类骨质","note":"未矿化的骨基质"},{"u":"u5","t":"bone lamella","zh":"骨板","note":"胶原纤维平行排列的板层"},{"u":"u5","t":"osteoblast","zh":"成骨细胞","note":"分泌类骨质，参与成骨"},{"u":"u5","t":"osteocyte","zh":"骨细胞","note":"位于骨陷窝，维持骨基质"},{"u":"u5","t":"osteoclast","zh":"破骨细胞","note":"多核，吸收骨组织"},{"u":"u5","t":"osteon","zh":"骨单位","note":"哈佛系统，密质骨基本结构单位"},{"u":"u5","t":"bone lacuna","zh":"骨陷窝","note":"骨细胞胞体所在腔"},{"u":"u5","t":"bone canaliculi","zh":"骨小管","note":"骨细胞突起所在管道"},{"u":"u5","t":"compact bone","zh":"骨密质","note":"骨板致密，位于骨表面"},{"u":"u5","t":"spongy bone","zh":"骨松质","note":"骨小梁网，位于骨内部"},{"u":"u5","t":"epiphyseal plate","zh":"骺板","note":"软骨内成骨的生长板"},{"u":"u5","t":"intramembranous ossification","zh":"膜内成骨","note":"直接从间充质形成骨"},{"u":"u5","t":"endochondral ossification","zh":"软骨内成骨","note":"先形成软骨再替换为骨"},{"u":"u5","t":"plasma","zh":"血浆","note":"血液的液体成分"},{"u":"u5","t":"serum","zh":"血清","note":"血浆去除纤维蛋白原后所得"},{"u":"u5","t":"erythrocyte","zh":"红细胞","note":"运输 O₂ 和 CO₂"},{"u":"u5","t":"hemoglobin","zh":"血红蛋白","note":"红细胞内的载氧蛋白"},{"u":"u5","t":"leukocyte","zh":"白细胞","note":"参与免疫防御"},{"u":"u5","t":"lymphocyte","zh":"淋巴细胞","note":"参与特异性免疫"},{"u":"u5","t":"blood platelet","zh":"血小板","note":"参与止血和凝血"},{"u":"u5","t":"hematopoietic stem cell (HSC)","zh":"造血干细胞","note":"生成各种血细胞"},{"u":"u5","t":"neutrophil","zh":"中性粒细胞","note":"急性炎症中吞噬病原体"},{"u":"u5","t":"eosinophil","zh":"嗜酸性粒细胞","note":"抗寄生虫，参与过敏反应"},{"u":"u5","t":"basophil","zh":"嗜碱性粒细胞","note":"释放组胺，参与过敏反应"},{"u":"u6","t":"amino acid","zh":"氨基酸","note":"蛋白质的构件分子，共 20 种"},{"u":"u6","t":"peptide bond","zh":"肽键","note":"连接氨基酸的酰胺键"},{"u":"u6","t":"protein","zh":"蛋白质","note":"由氨基酸链构成的大分子"},{"u":"u6","t":"nucleic acid","zh":"核酸","note":"包括 DNA 和 RNA"},{"u":"u6","t":"carbohydrate","zh":"糖类","note":"包括单糖、寡糖和多糖"},{"u":"u6","t":"lipid","zh":"脂类","note":"包括脂肪、磷脂和固醇等"},{"u":"u6","t":"saturated fatty acid","zh":"饱和脂肪酸","note":"不含 C=C，碳链直"},{"u":"u6","t":"unsaturated fatty acid","zh":"不饱和脂肪酸","note":"含 C=C，体内常为顺式"},{"u":"u6","t":"triglyceride","zh":"甘油三酯","note":"甘油加三个脂肪酸"},{"u":"u6","t":"phospholipid","zh":"磷脂","note":"两亲性，生物膜主要成分"},{"u":"u6","t":"cholesterol","zh":"胆固醇","note":"调节膜流动性，合成类固醇"},{"u":"u6","t":"ribose","zh":"核糖","note":"RNA 的戊糖"},{"u":"u6","t":"deoxyribose","zh":"脱氧核糖","note":"DNA 的戊糖"},{"u":"u6","t":"purine","zh":"嘌呤","note":"包括腺嘌呤和鸟嘌呤"},{"u":"u6","t":"pyrimidine","zh":"嘧啶","note":"包括胞嘧啶、胸腺嘧啶和尿嘧啶"},{"u":"u6","t":"base","zh":"碱基","note":"含氮杂环化合物"},{"u":"u6","t":"nucleoside","zh":"核苷","note":"碱基与戊糖相连"},{"u":"u6","t":"nucleotide","zh":"核苷酸","note":"核苷加磷酸"},{"u":"u6","t":"ATP","zh":"三磷酸腺苷","note":"细胞能量货币"},{"u":"u7","t":"N-terminus","zh":"N 端","note":"肽链的氨基末端"},{"u":"u7","t":"C-terminus","zh":"C 端","note":"肽链的羧基末端"},{"u":"u7","t":"primary structure","zh":"一级结构","note":"氨基酸残基的排列顺序"},{"u":"u7","t":"secondary structure","zh":"二级结构","note":"α 螺旋、β 折叠等局部折叠"},{"u":"u7","t":"tertiary structure","zh":"三级结构","note":"整条肽链的空间构象"},{"u":"u7","t":"quaternary structure","zh":"四级结构","note":"多个亚基聚合"},{"u":"u7","t":"alpha helix","zh":"α 螺旋","note":"右手螺旋，每圈约 3.6 个残基"},{"u":"u7","t":"beta sheet","zh":"β 折叠","note":"平行或反平行的片层"},{"u":"u7","t":"motif","zh":"基序","note":"二级结构的特定组合"},{"u":"u7","t":"domain","zh":"结构域","note":"可独立折叠的功能区域"},{"u":"u7","t":"subunit","zh":"亚基","note":"四级结构中的单条肽链"},{"u":"u7","t":"conformation","zh":"构象","note":"蛋白质的空间结构"},{"u":"u7","t":"protein folding","zh":"蛋白质折叠","note":"肽链形成有功能构象的过程"},{"u":"u7","t":"chaperone","zh":"分子伴侣","note":"协助折叠，不进入最终产物"},{"u":"u7","t":"heat shock protein (HSP)","zh":"热休克蛋白","note":"应激时表达，帮助蛋白折叠"},{"u":"u7","t":"covalent modification","zh":"共价修饰","note":"如磷酸化、乙酰化"},{"u":"u7","t":"allosteric effect","zh":"别构效应","note":"结合配体后构象改变，影响活性"},{"u":"u7","t":"protein family","zh":"蛋白质家族","note":"序列、结构和功能相似的一组蛋白"},{"u":"u7","t":"denaturation","zh":"变性","note":"空间结构破坏，一级结构保留"},{"u":"u8","t":"DNA","zh":"脱氧核糖核酸","note":"遗传信息的携带者"},{"u":"u8","t":"RNA","zh":"核糖核酸","note":"参与遗传信息表达和调控"},{"u":"u8","t":"double helix","zh":"双螺旋","note":"两条链围绕共同轴盘旋"},{"u":"u8","t":"antiparallel","zh":"反向平行","note":"两条链 5'→3' 方向相反"},{"u":"u8","t":"complementary","zh":"互补","note":"A 与 T/U、G 与 C 配对"},{"u":"u8","t":"base pairing","zh":"碱基配对","note":"通过氢键形成"},{"u":"u8","t":"major groove","zh":"大沟","note":"DNA 双螺旋表面的宽沟"},{"u":"u8","t":"minor groove","zh":"小沟","note":"DNA 双螺旋表面的窄沟"},{"u":"u8","t":"Chargaff's rule","zh":"查加夫规则","note":"A=T，G=C"},{"u":"u8","t":"B-DNA","zh":"B 型 DNA","note":"生理条件下的右手双螺旋"},{"u":"u8","t":"nucleosome","zh":"核小体","note":"DNA 缠绕组蛋白八聚体"},{"u":"u8","t":"chromatin","zh":"染色质","note":"DNA 与蛋白质的复合物"},{"u":"u8","t":"chromosome","zh":"染色体","note":"染色质高度包装形成"},{"u":"u8","t":"gene","zh":"基因","note":"能产生有功能产物的 DNA 序列"},{"u":"u8","t":"messenger RNA (mRNA)","zh":"信使 RNA","note":"蛋白质合成的模板"},{"u":"u8","t":"transfer RNA (tRNA)","zh":"转运 RNA","note":"携带氨基酸到核糖体"},{"u":"u8","t":"ribosomal RNA (rRNA)","zh":"核糖体 RNA","note":"核糖体的重要组分"},{"u":"u8","t":"codon","zh":"密码子","note":"mRNA 上三个碱基决定一个氨基酸"},{"u":"u8","t":"anticodon","zh":"反密码子","note":"tRNA 上识别密码子的三联体"},{"u":"u8","t":"exon","zh":"外显子","note":"保留在成熟 RNA 中的序列"},{"u":"u8","t":"intron","zh":"内含子","note":"被剪接去除的序列"},{"u":"u8","t":"splicing","zh":"剪接","note":"去除内含子，连接外显子"},{"u":"u8","t":"5' cap","zh":"5' 帽","note":"保护 mRNA，促进翻译"},{"u":"u8","t":"poly(A) tail","zh":"poly(A) 尾","note":"提高 mRNA 稳定性"},{"u":"u8","t":"untranslated region (UTR)","zh":"非翻译区","note":"调控翻译和 mRNA 稳定性"},{"u":"u8","t":"non-coding RNA (ncRNA)","zh":"非编码 RNA","note":"不翻译成蛋白质的 RNA"},{"u":"u8","t":"microRNA (miRNA)","zh":"微小 RNA","note":"抑制翻译或降解 mRNA"},{"u":"u8","t":"small interfering RNA (siRNA)","zh":"小干扰 RNA","note":"降解特定 mRNA"},{"u":"u8","t":"long non-coding RNA (lncRNA)","zh":"长链非编码 RNA","note":"长度大于 200 nt 的非编码 RNA"},{"u":"u8","t":"hybridization","zh":"杂交","note":"互补核酸链配对"},{"u":"u8","t":"melting temperature (Tm)","zh":"熔解温度","note":"一半双链解开的温度"},{"u":"u9","t":"plasma membrane","zh":"质膜","note":"细胞与外界环境的边界"},{"u":"u9","t":"fluid mosaic model","zh":"流动镶嵌模型","note":"膜脂流动，蛋白镶嵌其中"},{"u":"u9","t":"lipid bilayer","zh":"脂双层","note":"两亲性脂质定向排列"},{"u":"u9","t":"glycolipid","zh":"糖脂","note":"膜外表面的糖链与脂质相连"},{"u":"u9","t":"glycoprotein","zh":"糖蛋白","note":"蛋白质与糖链共价结合"},{"u":"u9","t":"integral membrane protein","zh":"整合膜蛋白","note":"穿膜或锚入脂双层"},{"u":"u9","t":"peripheral membrane protein","zh":"周围膜蛋白","note":"以较弱方式附着膜表面"},{"u":"u9","t":"transmembrane protein","zh":"跨膜蛋白","note":"穿越脂双层的膜蛋白"},{"u":"u9","t":"lipid raft","zh":"脂筏","note":"富含胆固醇和鞘脂的膜微区"},{"u":"u9","t":"micelle","zh":"胶束","note":"单层脂质围成的球形结构"},{"u":"u9","t":"liposome","zh":"脂质体","note":"脂双层围成的囊泡"},{"u":"u9","t":"transporter","zh":"转运蛋白","note":"介导物质跨膜运输"},{"u":"u9","t":"receptor","zh":"受体","note":"识别并接收胞外信号"},{"u":"u9","t":"cytoskeleton","zh":"细胞骨架","note":"维持形态、运动和胞内运输"},{"u":"u9","t":"microtubule","zh":"微管","note":"直径约 25 nm 的中空管"},{"u":"u9","t":"microfilament","zh":"微丝","note":"直径约 7 nm，由肌动蛋白构成"},{"u":"u9","t":"intermediate filament","zh":"中间丝","note":"直径约 10 nm，组织特异"},{"u":"u9","t":"tubulin","zh":"微管蛋白","note":"微管的单体蛋白"},{"u":"u9","t":"vimentin","zh":"波形蛋白","note":"间充质细胞的中间丝蛋白"},{"u":"u9","t":"keratin","zh":"角蛋白","note":"上皮细胞的中间丝蛋白"},{"u":"u9","t":"nucleation","zh":"成核","note":"聚合反应的起始步骤"},{"u":"u9","t":"dynamic instability","zh":"动态不稳定性","note":"微管正端生长与缩短交替"},{"u":"u9","t":"microtubule organizing center (MTOC)","zh":"微管组织中心","note":"微管成核的中心"},{"u":"u9","t":"centrosome","zh":"中心体","note":"含一对中心粒"},{"u":"u9","t":"basal body","zh":"基体","note":"纤毛和鞭毛的微管组织中心"},{"u":"u9","t":"kinesin","zh":"驱动蛋白","note":"向微管正端运输"},{"u":"u9","t":"dynein","zh":"动力蛋白","note":"向微管负端运输"},{"u":"u9","t":"epithelial-mesenchymal transition (EMT)","zh":"上皮-间质转化","note":"上皮细胞获得迁移能力"},{"u":"u10","t":"ribosome","zh":"核糖体","note":"蛋白质合成的机器"},{"u":"u10","t":"polysome","zh":"多聚核糖体","note":"一个 mRNA 结合多个核糖体"},{"u":"u10","t":"free ribosome","zh":"游离核糖体","note":"合成胞内蛋白"},{"u":"u10","t":"membrane-bound ribosome","zh":"膜结合核糖体","note":"合成分泌蛋白和膜蛋白"},{"u":"u10","t":"endoplasmic reticulum (ER)","zh":"内质网","note":"膜性合成与加工网络"},{"u":"u10","t":"rough endoplasmic reticulum (RER)","zh":"粗面内质网","note":"表面有核糖体，合成蛋白质"},{"u":"u10","t":"smooth endoplasmic reticulum (SER)","zh":"滑面内质网","note":"合成脂质、解毒、储钙"},{"u":"u10","t":"Golgi apparatus","zh":"高尔基体","note":"加工、分选和包装"},{"u":"u10","t":"trans-Golgi network (TGN)","zh":"反面高尔基网络","note":"高尔基体的分选出口"},{"u":"u10","t":"vesicle","zh":"小泡","note":"膜性运输载体"},{"u":"u10","t":"COPI","zh":"COPI 包被小泡","note":"高尔基体到内质网的逆向运输"},{"u":"u10","t":"COPII","zh":"COPII 包被小泡","note":"内质网到高尔基体的运输"},{"u":"u10","t":"clathrin","zh":"网格蛋白","note":"参与胞吞和 TGN 出芽"},{"u":"u10","t":"Rab protein","zh":"Rab 蛋白","note":"小泡运输的分子开关"},{"u":"u10","t":"SNARE","zh":"SNARE 蛋白","note":"介导小泡与靶膜融合"},{"u":"u10","t":"KDEL signal","zh":"KDEL 信号","note":"内质网驻留信号"},{"u":"u10","t":"signal recognition particle (SRP)","zh":"信号识别颗粒","note":"识别信号肽并带到内质网"},{"u":"u10","t":"translocon","zh":"转位通道","note":"新生肽链进入内质网的通道"},{"u":"u10","t":"glycosylation","zh":"糖基化","note":"蛋白质或脂质加上糖链"},{"u":"u10","t":"ER stress","zh":"内质网应激","note":"未折叠蛋白积累引起的应激"},{"u":"u10","t":"ER-associated degradation (ERAD)","zh":"内质网相关降解","note":"降解错误折叠蛋白"},{"u":"u10","t":"endosome","zh":"内体","note":"胞吞物质的分选细胞器"},{"u":"u10","t":"multivesicular body (MVB)","zh":"多泡体","note":"内含多个小泡的晚期内体"},{"u":"u10","t":"exosome","zh":"外泌体","note":"释放到细胞外的囊泡"},{"u":"u10","t":"lysosome","zh":"溶酶体","note":"含酸性水解酶，负责消化"},{"u":"u10","t":"acid hydrolase","zh":"酸性水解酶","note":"溶酶体内的水解酶"},{"u":"u10","t":"V-ATPase","zh":"V 型质子泵","note":"泵入质子，酸化溶酶体"},{"u":"u10","t":"mannose-6-phosphate (M6P)","zh":"甘露糖-6-磷酸","note":"溶酶体酶的分选信号"},{"u":"u10","t":"autophagy","zh":"自噬","note":"自噬体包裹并降解胞内物质"},{"u":"u10","t":"autophagosome","zh":"自噬体","note":"双层膜包裹待降解物"},{"u":"u10","t":"autolysosome","zh":"自噬溶酶体","note":"自噬体与溶酶体融合"},{"u":"u10","t":"phagosome","zh":"吞噬体","note":"吞噬作用形成的囊泡"},{"u":"u10","t":"proteasome","zh":"蛋白酶体","note":"降解泛素化蛋白质"},{"u":"u10","t":"ubiquitin","zh":"泛素","note":"标记待降解的蛋白质"},{"u":"u10","t":"20S proteasome","zh":"20S 蛋白酶体","note":"蛋白酶体的核心降解腔"},{"u":"u11","t":"mitochondrion","zh":"线粒体","note":"细胞能量转换的主要场所"},{"u":"u11","t":"cristae","zh":"嵴","note":"内膜向内折叠形成"},{"u":"u11","t":"mitochondrial matrix","zh":"线粒体基质","note":"含酶、mtDNA 和核糖体"},{"u":"u11","t":"intermembrane space","zh":"膜间隙","note":"内外膜之间的空间"},{"u":"u11","t":"porin","zh":"孔蛋白","note":"外膜上的通道蛋白"},{"u":"u11","t":"VDAC","zh":"电压依赖性阴离子通道","note":"线粒体外膜的主要通道"},{"u":"u11","t":"electron transport chain","zh":"电子传递链","note":"即呼吸链"},{"u":"u11","t":"ATP synthase","zh":"ATP 合酶","note":"利用质子动力势合成 ATP"},{"u":"u11","t":"oxidative phosphorylation","zh":"氧化磷酸化","note":"细胞 ATP 的主要来源"},{"u":"u11","t":"mtDNA","zh":"线粒体 DNA","note":"环状双链，半自主复制"},{"u":"u11","t":"mitophagy","zh":"线粒体自噬","note":"清除损伤的线粒体"},{"u":"u11","t":"reactive oxygen species (ROS)","zh":"活性氧","note":"过多引起氧化应激"},{"u":"u11","t":"apoptosis","zh":"细胞凋亡","note":"程序性细胞死亡"},{"u":"u11","t":"MPTP","zh":"线粒体膜通透性转换孔","note":"开放导致线粒体损伤"},{"u":"u12","t":"nuclear envelope","zh":"核被膜","note":"双层核膜"},{"u":"u12","t":"nuclear pore complex (NPC)","zh":"核孔复合体","note":"介导核质间物质运输"},{"u":"u12","t":"nuclear lamina","zh":"核纤层","note":"内核膜下的纤维网络"},{"u":"u12","t":"lamin","zh":"核纤层蛋白","note":"属于中间丝蛋白家族"},{"u":"u12","t":"euchromatin","zh":"常染色质","note":"较松散，转录活跃"},{"u":"u12","t":"heterochromatin","zh":"异染色质","note":"高度浓缩，转录受抑"},{"u":"u12","t":"karyotype","zh":"核型","note":"染色体的数目和形态特征"},{"u":"u12","t":"histone","zh":"组蛋白","note":"H1、H2A、H2B、H3、H4"},{"u":"u12","t":"linker DNA","zh":"连接 DNA","note":"相邻核小体之间的 DNA"},{"u":"u12","t":"30-nm chromatin fiber","zh":"30 nm 染色质纤维","note":"核小体进一步折叠形成"},{"u":"u12","t":"loop","zh":"袢环","note":"30 nm 纤维折叠成的环状结构"},{"u":"u12","t":"Barr body","zh":"巴氏小体","note":"失活的 X 染色体"},{"u":"u12","t":"centromere","zh":"着丝粒","note":"姐妹染色单体连接的部位"},{"u":"u12","t":"telomere","zh":"端粒","note":"染色体末端的保护结构"},{"u":"u12","t":"chromatin remodeling","zh":"染色质重塑","note":"改变染色质可及性"},{"u":"u12","t":"histone modification","zh":"组蛋白修饰","note":"乙酰化、甲基化等"},{"u":"u12","t":"acetylation","zh":"乙酰化","note":"通常使染色质松散"},{"u":"u12","t":"transcription","zh":"转录","note":"以 DNA 为模板合成 RNA"},{"u":"u12","t":"translation","zh":"翻译","note":"以 mRNA 为模板合成蛋白质"},{"u":"u12","t":"central dogma","zh":"中心法则","note":"DNA→RNA→蛋白质"},{"u":"u12","t":"RNA processing","zh":"RNA 加工","note":"加帽、剪接、加尾"},{"u":"u12","t":"nucleolus","zh":"核仁","note":"rRNA 合成和核糖体组装场所"},{"u":"u12","t":"fibrillar center (FC)","zh":"纤维中心","note":"核仁中央的浅染区"},{"u":"u12","t":"dense fibrillar component (DFC)","zh":"致密纤维组分","note":"rRNA 加工区域"},{"u":"u12","t":"granular component (GC)","zh":"颗粒组分","note":"核糖体前体组装区域"},{"u":"u12","t":"nucleolar organizer region (NOR)","zh":"核仁组织者","note":"含 rRNA 基因的染色体襻环"},{"u":"u12","t":"ribonucleoprotein (RNP)","zh":"核糖核蛋白","note":"RNA 与蛋白质的复合物"},{"u":"u12","t":"Philadelphia chromosome","zh":"费城染色体","note":"BCR-ABL 融合，见于白血病"},{"u":"u12","t":"fluorescence in situ hybridization (FISH)","zh":"荧光原位杂交","note":"定位特定 DNA 序列"}];
+const KP = [{"id":"k1","u":"u1","q":"组织学研究的对象和任务是什么？","a":"研究正常人体微细结构及其相关功能，是重要的形态学基础学科。","note":"与病理学对照记忆：组织学看“正常”，病理学看“异常”。","pdf":"上皮组织.pdf","page":3,"slide":"assets/slides/kp_01_u1.webp"},{"id":"k2","u":"u1","q":"人体有哪四大基本组织？","a":"上皮组织、结缔组织、肌组织、神经组织。","note":"四大基本组织由不同细胞和细胞外基质构成。","pdf":"上皮组织.pdf","page":4,"slide":"assets/slides/kp_02_u1.webp"},{"id":"k3","u":"u1","q":"H-E 染色的原理和颜色是什么？","a":"苏木精为碱性染料，使嗜碱性物质（核酸、核糖体）呈紫蓝色；伊红为酸性染料，使嗜酸性物质（胞质、胶原）呈粉红色。","note":"H-E 是最常用的常规染色。","pdf":"上皮组织.pdf","page":9,"slide":"assets/slides/kp_03_u1.webp"},{"id":"k4","u":"u1","q":"PAS 反应显示什么？","a":"过碘酸把糖类氧化成醛，醛与 Schiff 试剂结合形成紫红色沉淀，用于显示糖原、黏液和基膜等。","note":"PAS 阳性 = 紫红色。","pdf":"上皮组织.pdf","page":11,"slide":"assets/slides/kp_04_u1.webp"},{"id":"k5","u":"u1","q":"透射电镜和扫描电镜有什么区别？","a":"TEM 让电子穿透标本，观察细胞内部超微结构；SEM 收集表面二次电子，观察细胞或组织表面立体形态。","note":"TEM 看“里面”，SEM 看“表面”。","pdf":"上皮组织.pdf","page":18,"slide":"assets/slides/kp_05_u1.webp"},{"id":"k6","u":"u1","q":"冷冻电镜的优势是什么？","a":"快速冷冻把样品固定在近生理状态，无需染色和包埋，可解析生物大分子近原子分辨率结构。","note":"2017 年诺贝尔化学奖。","pdf":"上皮组织.pdf","page":19,"slide":"assets/slides/kp_06_u1.webp"},{"id":"k7","u":"u1","q":"细胞学说的核心内容是什么？","a":"细胞是生物体结构和功能的基本单位；一切生物由细胞组成；细胞来自已有细胞。","note":"Schleiden、Schwann 提出，Virchow 补充“细胞来自细胞”。","pdf":"2026.9 分子细胞与组织 绪论 - 学生.pdf","page":18,"slide":"assets/slides/kp_07_u1.webp"},{"id":"k8","u":"u1","q":"分辨率指的是什么？","a":"能分辨两点之间的最小距离；光镜约 0.2 μm，电镜约 0.2 nm。","note":"分辨率越小，看得越细。","pdf":"2026.9 分子细胞与组织 绪论 - 学生.pdf","page":85,"slide":"assets/slides/kp_08_u1.webp"},{"id":"k9","u":"u2","q":"被覆上皮按层数和细胞形态如何分类？","a":"按层数分单层、复层；按形态分扁平、立方、柱状；另有复层扁平上皮和变移上皮等特殊类型。","note":"先看层数，再看表层细胞形态。","pdf":"上皮组织.pdf","page":30,"slide":"assets/slides/kp_09_u2.webp"},{"id":"k10","u":"u2","q":"微绒毛的结构和功能是什么？","a":"上皮细胞游离面伸出的指状突起，直径约 0.1 μm，内含纵行微丝，可扩大细胞表面积，利于吸收。","note":"光镜下小肠的纹状缘、肾小管的刷状缘就是微绒毛。","pdf":"上皮组织.pdf","page":44,"slide":"assets/slides/kp_10_u2.webp"},{"id":"k11","u":"u2","q":"纤毛的“9+2”结构是什么？","a":"纤毛核心为微管轴，周围 9 组二联微管围绕中央 2 根单微管，由基体调控，可定向摆动。","note":"动纤毛能运动；静纤毛其实是长微绒毛。","pdf":"上皮组织.pdf","page":47,"slide":"assets/slides/kp_11_u2.webp"},{"id":"k12","u":"u2","q":"紧密连接的结构和功能是什么？","a":"相邻细胞膜紧密相贴，封闭细胞间隙，形成屏障，阻止物质从细胞间隙通过。","note":"位于连接复合体最深层。","pdf":"上皮组织.pdf","page":57,"slide":"assets/slides/kp_12_u2.webp"},{"id":"k13","u":"u2","q":"桥粒的结构和功能是什么？","a":"相邻细胞间形成桥粒斑，胞质内有张力丝附着，提供牢固的机械连接，耐摩擦和牵拉。","note":"复层扁平上皮中多见。","pdf":"上皮组织.pdf","page":59,"slide":"assets/slides/kp_13_u2.webp"},{"id":"k14","u":"u2","q":"缝隙连接如何实现细胞间通讯？","a":"相邻细胞膜上有由 6 个连接蛋白组成的连接子，形成 2 nm 通道，允许小分子和离子通过。","note":"心肌闰盘、平滑肌中常见。","pdf":"上皮组织.pdf","page":60,"slide":"assets/slides/kp_14_u2.webp"},{"id":"k15","u":"u2","q":"基膜的组成和功能是什么？","a":"基膜位于上皮与结缔组织之间，由基板和网板构成，起支持、连接和滤过作用。","note":"基板含 IV 型胶原、层粘连蛋白等。","pdf":"上皮组织.pdf","page":62,"slide":"assets/slides/kp_15_u2.webp"},{"id":"k16","u":"u2","q":"杯状细胞的结构和功能是什么？","a":"杯状细胞是分泌黏液的腺细胞，顶部充满黏原颗粒，PAS 阳性，分泌黏液润滑和保护上皮。","note":"见于呼吸道、肠道上皮。","pdf":"上皮组织.pdf","page":67,"slide":"assets/slides/kp_16_u2.webp"},{"id":"k17","u":"u3","q":"疏松结缔组织由哪些成分构成？","a":"由细胞、纤维和基质构成；细胞少、纤维疏松、基质多，分布于器官之间和血管周围。","note":"固有结缔组织中最典型的一种。","pdf":"固有结缔组织.pdf","page":10,"slide":"assets/slides/kp_17_u3.webp"},{"id":"k18","u":"u3","q":"胶原纤维的结构特点是什么？","a":"主要由 I、III 型胶原蛋白构成，有 64/67 nm 周期性横纹，H-E 染色嗜酸性，韧性大。","note":"胶原纤维由胶原原纤维组成。","pdf":"固有结缔组织.pdf","page":11,"slide":"assets/slides/kp_18_u3.webp"},{"id":"k19","u":"u3","q":"弹性纤维的组成和功能是什么？","a":"由弹性蛋白和微原纤维构成，折光性强，可拉伸回弹，赋予组织弹性。","note":"皮肤、肺、弹性动脉中丰富。","pdf":"固有结缔组织.pdf","page":13,"slide":"assets/slides/kp_19_u3.webp"},{"id":"k20","u":"u3","q":"基质的主要成分和功能是什么？","a":"基质是无定形胶状物，含蛋白多糖、糖蛋白和组织液，起支持、连接、保水和物质交换作用。","note":"蛋白多糖形成分子筛。","pdf":"固有结缔组织.pdf","page":16,"slide":"assets/slides/kp_20_u3.webp"},{"id":"k21","u":"u3","q":"成纤维细胞的结构和功能是什么？","a":"胞体大、多突起，富含 RER 和高尔基体，合成胶原纤维、弹性纤维和基质。","note":"纤维细胞是其静止状态。","pdf":"固有结缔组织.pdf","page":23,"slide":"assets/slides/kp_21_u3.webp"},{"id":"k22","u":"u3","q":"巨噬细胞的功能有哪些？","a":"来源于单核细胞，具有吞噬、抗原提呈、分泌细胞因子和参与免疫调节等功能。","note":"表面有受体和 MHC 分子。","pdf":"固有结缔组织.pdf","page":32,"slide":"assets/slides/kp_22_u3.webp"},{"id":"k23","u":"u3","q":"浆细胞的结构和功能是什么？","a":"来源于 B 淋巴细胞，核偏位呈车轮状，富含 RER，分泌抗体参与体液免疫。","note":"浆细胞 = 抗体工厂。","pdf":"固有结缔组织.pdf","page":36,"slide":"assets/slides/kp_23_u3.webp"},{"id":"k24","u":"u3","q":"肥大细胞的功能是什么？","a":"胞质含粗大嗜碱性颗粒，释放组胺、肝素和白三烯等，参与过敏反应和炎症。","note":"颗粒异染性，甲苯胺蓝染色。","pdf":"固有结缔组织.pdf","page":38,"slide":"assets/slides/kp_24_u3.webp"},{"id":"k25","u":"u4","q":"肌节的定义和组成是什么？","a":"相邻两条 Z 线之间的一段肌原纤维，由粗肌丝和细肌丝规律排列组成，是肌收缩的基本单位。","note":"收缩时 I 带、H 带变短，A 带不变。","pdf":"肌组织.pdf","page":8,"slide":"assets/slides/kp_25_u4.webp"},{"id":"k26","u":"u4","q":"粗肌丝由什么构成？","a":"由肌球蛋白分子规律排列而成，杆部固定于 M 线，头部形成横桥并具有 ATP 酶活性。","note":"粗肌丝贯穿暗带。","pdf":"肌组织.pdf","page":10,"slide":"assets/slides/kp_26_u4.webp"},{"id":"k27","u":"u4","q":"细肌丝由哪些蛋白构成？","a":"由肌动蛋白、原肌球蛋白和肌钙蛋白组成；肌动蛋白形成双股螺旋。","note":"细肌丝一端附着于 Z 线。","pdf":"肌组织.pdf","page":11,"slide":"assets/slides/kp_27_u4.webp"},{"id":"k28","u":"u4","q":"横小管的结构和功能是什么？","a":"肌膜向肌浆内凹陷形成的小管，位于 A/I 带交界处，可把兴奋传入肌纤维内部。","note":"心肌横小管位于 Z 线水平。","pdf":"肌组织.pdf","page":13,"slide":"assets/slides/kp_28_u4.webp"},{"id":"k29","u":"u4","q":"三联体由什么组成？","a":"一条横小管及其两侧的终池组成。","note":"心肌为二联体。","pdf":"肌组织.pdf","page":14,"slide":"assets/slides/kp_29_u4.webp"},{"id":"k30","u":"u4","q":"兴奋-收缩偶联的关键步骤是什么？","a":"动作电位经横小管传入，终池释放 Ca²⁺，Ca²⁺ 与肌钙蛋白结合，触发横桥周期和肌丝滑行。","note":"Ca²⁺ 是偶联的关键离子。","pdf":"肌组织.pdf","page":15,"slide":"assets/slides/kp_30_u4.webp"},{"id":"k31","u":"u4","q":"闰盘的结构和功能是什么？","a":"心肌细胞间的连接结构，位于 Z 线水平，含桥粒、缝隙连接等，既牢固连接又允许电活动传导。","note":"心肌特有的结构。","pdf":"肌组织.pdf","page":21,"slide":"assets/slides/kp_31_u4.webp"},{"id":"k32","u":"u4","q":"骨骼肌、心肌、平滑肌的主要区别是什么？","a":"骨骼肌多核、横纹明显、受躯体运动神经支配；心肌有横纹和闰盘、不随意；平滑肌无横纹、梭形、不随意。","note":"从横纹、核位置、闰盘和神经支配比较。","pdf":"肌组织.pdf","page":35,"slide":"assets/slides/kp_32_u4.webp"},{"id":"k33","u":"u5","q":"透明软骨的结构特点是什么？","a":"软骨细胞位于软骨陷窝，基质呈均质状，含 II 型胶原原纤维，表面有软骨膜。","note":"关节软骨、肋软骨、气管软骨。","pdf":"软骨、骨、血液.pdf","page":9,"slide":"assets/slides/kp_33_u5.webp"},{"id":"k34","u":"u5","q":"骨单位的组成是什么？","a":"骨单位又称哈佛系统，由中央管及其周围同心圆排列的骨板构成，是密质骨的基本结构单位。","note":"中央管内含血管和神经。","pdf":"软骨、骨、血液.pdf","page":30,"slide":"assets/slides/kp_34_u5.webp"},{"id":"k35","u":"u5","q":"破骨细胞的结构和功能是什么？","a":"多核大细胞，位于骨吸收陷窝，靠质子泵和溶酶体酶溶解骨基质，负责骨吸收。","note":"与成骨细胞协同参与骨改建。","pdf":"软骨、骨、血液.pdf","page":23,"slide":"assets/slides/kp_35_u5.webp"},{"id":"k36","u":"u5","q":"软骨内成骨的基本过程是什么？","a":"先形成透明软骨雏形，再出现初级骨化中心、次级骨化中心，软骨逐步被骨组织替换，骺板保留生长。","note":"长骨发生的主要方式。","pdf":"软骨、骨、血液.pdf","page":46,"slide":"assets/slides/kp_36_u5.webp"},{"id":"k37","u":"u5","q":"血浆和血清有什么区别？","a":"血浆是血液的液体成分，含纤维蛋白原；血清是血浆去除纤维蛋白原后的液体。","note":"血清 = 血浆 - 纤维蛋白原。","pdf":"软骨、骨、血液.pdf","page":51,"slide":"assets/slides/kp_37_u5.webp"},{"id":"k38","u":"u5","q":"红细胞的结构和功能是什么？","a":"成熟红细胞无核无细胞器，呈双凹圆盘状，含血红蛋白，运输 O₂ 和 CO₂。","note":"血红蛋白是主要载氧蛋白。","pdf":"软骨、骨、血液.pdf","page":54,"slide":"assets/slides/kp_38_u5.webp"},{"id":"k39","u":"u5","q":"白细胞如何分类？","a":"按胞质有无特殊颗粒分粒细胞和无粒细胞；粒细胞包括中性、嗜酸性、嗜碱性粒细胞，无粒细胞包括单核细胞和淋巴细胞。","note":"中性粒细胞最多，参与急性炎症。","pdf":"软骨、骨、血液.pdf","page":59,"slide":"assets/slides/kp_39_u5.webp"},{"id":"k40","u":"u5","q":"血小板的结构和功能是什么？","a":"血小板是无核的胞质小体，含颗粒和管道系统，参与止血和凝血。","note":"由巨核细胞胞质脱落形成。","pdf":"软骨、骨、血液.pdf","page":66,"slide":"assets/slides/kp_40_u5.webp"},{"id":"k41","u":"u6","q":"氨基酸如何连接成肽链？","a":"一个氨基酸的羧基与另一个氨基酸的氨基脱去一分子水，形成肽键。","note":"肽键具有部分双键性质。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":4,"slide":"assets/slides/kp_41_u6.webp"},{"id":"k42","u":"u6","q":"饱和脂肪酸和不饱和脂肪酸有什么区别？","a":"饱和脂肪酸不含 C=C，碳链直；不饱和脂肪酸含 C=C，体内常为顺式，使碳链弯曲。","note":"顺式不饱和脂肪酸影响膜流动性。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":27,"slide":"assets/slides/kp_42_u6.webp"},{"id":"k43","u":"u6","q":"磷脂为什么能形成生物膜？","a":"磷脂是两亲性分子，亲水头朝向水，疏水尾相对排列，可自发形成脂双层。","note":"膜脂的主要成分。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":26,"slide":"assets/slides/kp_43_u6.webp"},{"id":"k44","u":"u6","q":"核苷酸由哪三部分组成？","a":"由碱基、戊糖和磷酸组成；核苷 = 碱基 + 戊糖，核苷酸 = 核苷 + 磷酸。","note":"DNA 和 RNA 的基本单位。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":46,"slide":"assets/slides/kp_44_u6.webp"},{"id":"k45","u":"u6","q":"嘌呤和嘧啶分别包括哪些碱基？","a":"嘌呤包括腺嘌呤（A）和鸟嘌呤（G）；嘧啶包括胞嘧啶（C）、胸腺嘧啶（T）和尿嘧啶（U）。","note":"T 只在 DNA，U 只在 RNA。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":39,"slide":"assets/slides/kp_45_u6.webp"},{"id":"k46","u":"u6","q":"核糖和脱氧核糖有什么区别？","a":"核糖是 RNA 的戊糖，2' 位有羟基；脱氧核糖是 DNA 的戊糖，2' 位脱去羟基。","note":"脱氧 = 2' 位少一个氧。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":43,"slide":"assets/slides/kp_46_u6.webp"},{"id":"k47","u":"u6","q":"ATP 为什么被称为能量货币？","a":"ATP 含两个高能磷酸键，水解时释放大量能量，供细胞各项生命活动使用。","note":"ATP ↔ ADP + Pi 是能量转换的核心。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":39,"slide":"assets/slides/kp_47_u6.webp"},{"id":"k48","u":"u6","q":"什么是构件分子？","a":"构件分子是构成生物大分子的小分子单元，如氨基酸、核苷酸、单糖和脂肪酸。","note":"大分子 = 构件分子聚合而成。","pdf":"第二章第一节 细胞的化学组成_蔡蓉.pdf","page":4,"slide":"assets/slides/kp_48_u6.webp"},{"id":"k49","u":"u7","q":"蛋白质一级结构的定义是什么？","a":"指肽链中氨基酸残基的排列顺序，从 N 端到 C 端。","note":"一级结构决定高级结构。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":24,"slide":"assets/slides/kp_49_u7.webp"},{"id":"k50","u":"u7","q":"α-螺旋的结构特点是什么？","a":"右手螺旋，每圈约 3.6 个氨基酸残基，螺距约 0.54 nm，侧链伸向螺旋外侧。","note":"氢键维持螺旋。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":33,"slide":"assets/slides/kp_50_u7.webp"},{"id":"k51","u":"u7","q":"蛋白质四级结构的定义是什么？","a":"由两条或两条以上具有独立三级结构的肽链（亚基）通过非共价键聚合而成。","note":"亚基单独存在时通常无活性。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":52,"slide":"assets/slides/kp_51_u7.webp"},{"id":"k52","u":"u7","q":"分子伴侣的作用是什么？","a":"协助新生肽链折叠、组装和转运，防止错误折叠和聚集，但不进入最终产物。","note":"热休克蛋白是重要成员。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":17,"slide":"assets/slides/kp_52_u7.webp"},{"id":"k53","u":"u7","q":"别构效应是什么？","a":"配体与蛋白质特定位点结合后引起构象改变，从而改变蛋白质活性。","note":"血红蛋白结合氧就是典型例子。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":57,"slide":"assets/slides/kp_53_u7.webp"},{"id":"k54","u":"u7","q":"蛋白质变性后哪些结构被破坏？","a":"空间结构（二级、三级、四级）被破坏，一级结构保留；溶解度降低、生物活性丧失。","note":"变性不等于肽键断裂。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":30,"slide":"assets/slides/kp_54_u7.webp"},{"id":"k55","u":"u7","q":"蛋白质家族和超家族有什么区别？","a":"家族成员序列、结构和功能相似；超家族成员同源性更低但结构折叠相似，可含多个家族。","note":"越往后同源性越低。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":66,"slide":"assets/slides/kp_55_u7.webp"},{"id":"k56","u":"u7","q":"亚基是什么？","a":"四级结构中每条具有独立三级结构的肽链称为亚基。","note":"亚基之间靠非共价键结合。","pdf":"第二节 蛋白质_蔡蓉.pdf","page":20,"slide":"assets/slides/kp_56_u7.webp"},{"id":"k57","u":"u8","q":"DNA 双螺旋模型的特点是什么？","a":"两条反向平行的多核苷酸链围绕共同轴形成右手双螺旋，磷酸-脱氧核糖骨架在外，碱基对在内。","note":"B 型 DNA 最接近生理状态。","pdf":"第三节 核酸_蔡蓉.pdf","page":20,"slide":"assets/slides/kp_57_u8.webp"},{"id":"k58","u":"u8","q":"Chargaff 规则的 content 是什么？","a":"双链 DNA 中 A=T、G=C，因此 A+G=T+C。","note":"碱基互补配对的化学基础。","pdf":"第三节 核酸_蔡蓉.pdf","page":12,"slide":"assets/slides/kp_58_u8.webp"},{"id":"k59","u":"u8","q":"核小体的组成是什么？","a":"由 DNA 缠绕组蛋白八聚体（H2A、H2B、H3、H4 各两分子）构成，H1 参与进一步包装。","note":"约 146 bp DNA 绕 1.75 圈。","pdf":"第三节 核酸_蔡蓉.pdf","page":63,"slide":"assets/slides/kp_59_u8.webp"},{"id":"k60","u":"u8","q":"mRNA、tRNA、rRNA 的功能分别是什么？","a":"mRNA 携带遗传信息作为翻译模板；tRNA 转运氨基酸并识别密码子；rRNA 是核糖体的结构和催化组分。","note":"三者都参与蛋白质合成。","pdf":"第三节 核酸_蔡蓉.pdf","page":60,"slide":"assets/slides/kp_60_u8.webp"},{"id":"k61","u":"u8","q":"真核 mRNA 转录后加工包括哪些步骤？","a":"加 5' 帽、剪接去除内含子、3' 端加 poly(A) 尾，有时还有 RNA 编辑。","note":"成熟 mRNA 才能出核翻译。","pdf":"第三节 核酸_蔡蓉.pdf","page":71,"slide":"assets/slides/kp_61_u8.webp"},{"id":"k62","u":"u8","q":"miRNA 的作用机制是什么？","a":"与靶 mRNA 互补结合，抑制翻译或促进 mRNA 降解，从而负调控基因表达。","note":"miRNA 属于小非编码 RNA。","pdf":"第三节 核酸_蔡蓉.pdf","page":60,"slide":"assets/slides/kp_62_u8.webp"},{"id":"k63","u":"u8","q":"核酸的 Tm 是什么？","a":"Tm 是熔解温度，即双链 DNA 有一半解链成单链时的温度。","note":"GC 含量越高，Tm 越高。","pdf":"第三节 核酸_蔡蓉.pdf","page":80,"slide":"assets/slides/kp_63_u8.webp"},{"id":"k64","u":"u8","q":"基因组、转录组和蛋白质组有什么区别？","a":"基因组是一个生物体全部遗传信息；转录组是全部转录本；蛋白质组是全部蛋白质。","note":"分别对应 DNA、RNA、蛋白质层面。","pdf":"第三节 核酸_蔡蓉.pdf","page":73,"slide":"assets/slides/kp_64_u8.webp"},{"id":"k65","u":"u9","q":"流动镶嵌模型的核心观点是什么？","a":"生物膜以流动的脂双层为骨架，蛋白质镶嵌、贯穿或附着在脂双层上，膜具有流动性和不对称性。","note":"膜脂和膜蛋白都能运动。","pdf":"细胞骨架质膜课件2026.pdf","page":45,"slide":"assets/slides/kp_65_u9.webp"},{"id":"k66","u":"u9","q":"膜蛋白有哪几种存在方式？","a":"跨膜蛋白、整合膜蛋白和周围膜蛋白；跨膜蛋白可单次或多次跨膜。","note":"整合膜蛋白穿膜或锚入脂单层。","pdf":"细胞骨架质膜课件2026.pdf","page":59,"slide":"assets/slides/kp_66_u9.webp"},{"id":"k67","u":"u9","q":"微管的结构和功能是什么？","a":"由 α/β 微管蛋白二聚体组成的中空管，直径约 25 nm，参与维持形态、胞内运输、纺锤体和纤毛运动。","note":"微管有极性，正端生长快。","pdf":"细胞骨架质膜课件2026.pdf","page":5,"slide":"assets/slides/kp_67_u9.webp"},{"id":"k68","u":"u9","q":"微丝的结构和功能是什么？","a":"由肌动蛋白组成的细丝，直径约 7 nm，参与细胞形态维持、运动、胞质分裂和微绒毛支架。","note":"微丝有极性，正端聚合快。","pdf":"细胞骨架质膜课件2026.pdf","page":5,"slide":"assets/slides/kp_68_u9.webp"},{"id":"k69","u":"u9","q":"中间丝的特点是什么？","a":"直径约 10 nm，由组织特异性中间丝蛋白组成，如角蛋白、波形蛋白、核纤层蛋白，主要提供机械支撑。","note":"中间丝无极性。","pdf":"细胞骨架质膜课件2026.pdf","page":6,"slide":"assets/slides/kp_69_u9.webp"},{"id":"k70","u":"u9","q":"马达蛋白有哪些？分别向哪端运输？","a":"驱动蛋白向微管正端运输，动力蛋白向微管负端运输；肌球蛋白沿微丝运动。","note":"马达蛋白水解 ATP 供能。","pdf":"细胞骨架质膜课件2026.pdf","page":20,"slide":"assets/slides/kp_70_u9.webp"},{"id":"k71","u":"u9","q":"中心体和基体的关系是什么？","a":"中心体含一对中心粒，是微管组织中心；基体位于纤毛/鞭毛基部，由中心粒衍生而来。","note":"中心体参与纺锤体形成。","pdf":"细胞骨架质膜课件2026.pdf","page":15,"slide":"assets/slides/kp_71_u9.webp"},{"id":"k72","u":"u9","q":"EMT 是什么？","a":"上皮-间质转化：上皮细胞失去极性和连接，获得间质细胞表型和迁移能力，参与胚胎发育和肿瘤转移。","note":"E-cadherin 下降、vimentin 升高。","pdf":"细胞骨架质膜课件2026.pdf","page":36,"slide":"assets/slides/kp_72_u9.webp"},{"id":"k73","u":"u10","q":"核糖体的结构和功能是什么？","a":"由 rRNA 和蛋白质组成的非膜性细胞器，是蛋白质合成的场所；原核 70S，真核 80S。","note":"游离核糖体合成胞内蛋白，膜结合核糖体合成分泌蛋白。","pdf":"核糖体、内质网、高尔基体2026.pdf","page":13,"slide":"assets/slides/kp_73_u10.webp"},{"id":"k74","u":"u10","q":"粗面内质网和滑面内质网有什么区别？","a":"粗面内质网表面有核糖体，合成和加工蛋白质；滑面内质网无核糖体，合成脂质、解毒和储存 Ca²⁺。","note":"两者膜腔相通。","pdf":"核糖体、内质网、高尔基体2026.pdf","page":30,"slide":"assets/slides/kp_74_u10.webp"},{"id":"k75","u":"u10","q":"高尔基体的功能是什么？","a":"对来自内质网的蛋白质进行糖基化、修饰、分选和包装，形成分泌小泡或溶酶体。","note":"高尔基体有顺面（cis）和反面（trans）。","pdf":"核糖体、内质网、高尔基体2026.pdf","page":58,"slide":"assets/slides/kp_75_u10.webp"},{"id":"k76","u":"u10","q":"COPII 和 COPI 小泡分别负责什么运输？","a":"COPII 负责内质网到高尔基体的顺向运输；COPI 负责高尔基体到内质网的逆向运输。","note":"KDEL 信号通过 COPI 回收。","pdf":"核糖体、内质网、高尔基体2026.pdf","page":39,"slide":"assets/slides/kp_76_u10.webp"},{"id":"k77","u":"u10","q":"SRP 和转位通道的作用是什么？","a":"SRP 识别新生肽链的 N 端信号肽，将其带到内质网膜，肽链经转位通道进入内质网腔。","note":"分泌蛋白共翻译转运。","pdf":"核糖体、内质网、高尔基体2026.pdf","page":36,"slide":"assets/slides/kp_77_u10.webp"},{"id":"k78","u":"u10","q":"溶酶体的结构和功能是什么？","a":"由单层膜包被，内含多种酸性水解酶，pH 约 5，负责降解胞吞物质、衰老细胞器和自噬体。","note":"溶酶体是细胞的“消化车间”。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":5,"slide":"assets/slides/kp_78_u10.webp"},{"id":"k79","u":"u10","q":"自噬的基本过程是什么？","a":"双层膜形成自噬体，包裹待降解物，与溶酶体融合形成自噬溶酶体，降解产物被回收利用。","note":"自噬是生存应激反应。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":21,"slide":"assets/slides/kp_79_u10.webp"},{"id":"k80","u":"u10","q":"蛋白酶体的结构和功能是什么？","a":"呈中空圆桶状，20S 核心负责降解，19S 调节颗粒识别泛素化蛋白，降解错误折叠或短寿命蛋白。","note":"与溶酶体分工不同。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":39,"slide":"assets/slides/kp_80_u10.webp"},{"id":"k81","u":"u11","q":"线粒体嵴的结构和意义是什么？","a":"内膜向内折叠形成嵴，显著扩大内膜表面积，有利于电子传递和 ATP 合成。","note":"心肌细胞线粒体嵴密集。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":44,"slide":"assets/slides/kp_81_u11.webp"},{"id":"k82","u":"u11","q":"电子传递链的功能是什么？","a":"位于线粒体内膜，接受 NADH 和 FADH₂ 的电子，逐步传递并泵出质子，建立质子动力势。","note":"电子最终传给 O₂ 生成 H₂O。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":47,"slide":"assets/slides/kp_82_u11.webp"},{"id":"k83","u":"u11","q":"ATP 合酶如何合成 ATP？","a":"质子顺梯度回流，驱动 c 环和 γ 轴旋转，引起 β 亚基构象变化，将 ADP + Pi 合成 ATP。","note":"化学渗透偶联。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":50,"slide":"assets/slides/kp_83_u11.webp"},{"id":"k84","u":"u11","q":"氧化磷酸化是什么？","a":"NADH/FADH₂ 氧化释放的电子经呼吸链传递，偶联质子泵出和 ATP 合成。","note":"细胞 ATP 的主要来源。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":50,"slide":"assets/slides/kp_84_u11.webp"},{"id":"k85","u":"u11","q":"mtDNA 的特点是什么？","a":"线粒体 DNA 为双链环状，可多拷贝，编码少量线粒体蛋白，呈母系遗传。","note":"线粒体是半自主性细胞器。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":54,"slide":"assets/slides/kp_85_u11.webp"},{"id":"k86","u":"u11","q":"线粒体分裂和融合的意义是什么？","a":"分裂增加线粒体数量并清除损伤部分；融合交换内容物、互补功能，维持线粒体网络健康。","note":"二者平衡是质量控制的关键。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":56,"slide":"assets/slides/kp_86_u11.webp"},{"id":"k87","u":"u11","q":"线粒体自噬是什么？","a":"通过自噬选择性清除损伤或多余的线粒体，维持线粒体质量和细胞稳态。","note":"PINK1/Parkin 通路参与。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":56,"slide":"assets/slides/kp_87_u11.webp"},{"id":"k88","u":"u11","q":"线粒体途径凋亡的关键事件是什么？","a":"线粒体膜通透性增加，细胞色素 c 释放到胞质，激活 caspase 级联，导致细胞凋亡。","note":"MPTP 开放是重要机制。","pdf":"内体、溶酶体、蛋白酶体、线粒体2026.pdf","page":62,"slide":"assets/slides/kp_88_u11.webp"},{"id":"k89","u":"u12","q":"核孔复合体的功能是什么？","a":"介导核质之间大分子的选择性运输，小分子可自由扩散，大分子需核定位信号和转运受体。","note":"核孔复合体由多种核孔蛋白组成。","pdf":"细胞核课件2026.pdf","page":10,"slide":"assets/slides/kp_89_u12.webp"},{"id":"k90","u":"u12","q":"核纤层的组成和功能是什么？","a":"位于内核膜下，由核纤层蛋白（lamin）组成的纤维网络，支撑核膜、锚定染色质。","note":"lamin 突变可导致核纤层病。","pdf":"细胞核课件2026.pdf","page":13,"slide":"assets/slides/kp_90_u12.webp"},{"id":"k91","u":"u12","q":"常染色质和异染色质有什么区别？","a":"常染色质较松散、转录活跃；异染色质高度浓缩、转录受抑。","note":"两者可相互转化。","pdf":"细胞核课件2026.pdf","page":17,"slide":"assets/slides/kp_91_u12.webp"},{"id":"k92","u":"u12","q":"核小体的结构是什么？","a":"由 146 bp DNA 缠绕组蛋白八聚体 1.75 圈构成，H1 结合在 DNA 进出点。","note":"染色质的基本结构单位。","pdf":"细胞核课件2026.pdf","page":25,"slide":"assets/slides/kp_92_u12.webp"},{"id":"k93","u":"u12","q":"核型分析有什么用途？","a":"观察染色体的数目和形态，用于诊断染色体数目异常、结构畸变和肿瘤相关改变。","note":"如唐氏综合征 21 三体。","pdf":"细胞核课件2026.pdf","page":20,"slide":"assets/slides/kp_93_u12.webp"},{"id":"k94","u":"u12","q":"核仁的三个亚区是什么？","a":"纤维中心（FC）、致密纤维组分（DFC）和颗粒组分（GC），分别对应 rRNA 基因、rRNA 加工和核糖体前体组装。","note":"核仁是无膜的大分子凝聚体。","pdf":"细胞核课件2026.pdf","page":54,"slide":"assets/slides/kp_94_u12.webp"},{"id":"k95","u":"u12","q":"中心法则的内容是什么？","a":"遗传信息从 DNA 转录到 RNA，再翻译成蛋白质；DNA 可自我复制。","note":"逆转录是对中心法则的补充。","pdf":"细胞核课件2026.pdf","page":42,"slide":"assets/slides/kp_95_u12.webp"},{"id":"k96","u":"u12","q":"染色质重塑是什么？","a":"通过重塑因子复合体改变核小体位置、组成或结构，调节染色质可及性和基因转录。","note":"与组蛋白修饰协同。","pdf":"细胞核课件2026.pdf","page":47,"slide":"assets/slides/kp_96_u12.webp"}];
+const REWARDS = [{"src":"assets/rewards/ww_004.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_001.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_003.webp","name":"Lupa","series":"鸣潮"},{"src":"assets/rewards/ww_054.webp","name":"Lupa","series":"鸣潮"},{"src":"assets/rewards/ww_007.webp","name":"德妮亚","series":"鸣潮"},{"src":"assets/rewards/ww_064.webp","name":"德妮亚","series":"鸣潮"},{"src":"assets/rewards/ww_008.webp","name":"珂莱塔","series":"鸣潮"},{"src":"assets/rewards/ww_010.webp","name":"希格丽卡","series":"鸣潮"},{"src":"assets/rewards/ww_044.webp","name":"希格丽卡","series":"鸣潮"},{"src":"assets/rewards/ww_011.webp","name":"今汐","series":"鸣潮"},{"src":"assets/rewards/ww_077.webp","name":"今汐","series":"鸣潮"},{"src":"assets/rewards/ww_015.webp","name":"Hsin","series":"鸣潮"},{"src":"assets/rewards/ww_052.webp","name":"Hsin","series":"鸣潮"},{"src":"assets/rewards/ww_012.webp","name":"漂泊者","series":"鸣潮"},{"src":"assets/rewards/ww_045.webp","name":"漂泊者","series":"鸣潮"},{"src":"assets/rewards/ww_020.webp","name":"赞妮","series":"鸣潮"},{"src":"assets/rewards/ww_097.webp","name":"赞妮","series":"鸣潮"},{"src":"assets/rewards/ww_022.webp","name":"Tacet Mark","series":"鸣潮"},{"src":"assets/rewards/ww_021.webp","name":"Tacet Mark","series":"鸣潮"},{"src":"assets/rewards/ww_023.webp","name":"爱弥斯","series":"鸣潮"},{"src":"assets/rewards/ww_066.webp","name":"爱弥斯","series":"鸣潮"},{"src":"assets/rewards/ww_042.webp","name":"菲比","series":"鸣潮"},{"src":"assets/rewards/ww_043.webp","name":"菲比","series":"鸣潮"},{"src":"assets/rewards/ww_049.webp","name":"露西拉","series":"鸣潮"},{"src":"assets/rewards/ww_053.webp","name":"坎特蕾拉","series":"鸣潮"},{"src":"assets/rewards/ww_123.webp","name":"坎特蕾拉","series":"鸣潮"},{"src":"assets/rewards/ww_051.webp","name":"Lily","series":"鸣潮"},{"src":"assets/rewards/ww_060.webp","name":"Lily","series":"鸣潮"},{"src":"assets/rewards/ww_056.webp","name":"Mornye","series":"鸣潮"},{"src":"assets/rewards/ww_072.webp","name":"Mornye","series":"鸣潮"},{"src":"assets/rewards/ww_058.webp","name":"千咲","series":"鸣潮"},{"src":"assets/rewards/ww_057.webp","name":"千咲","series":"鸣潮"},{"src":"assets/rewards/ww_059.webp","name":"吟霖","series":"鸣潮"},{"src":"assets/rewards/ww_062.webp","name":"Hiyuki","series":"鸣潮"},{"src":"assets/rewards/ww_065.webp","name":"卜灵","series":"鸣潮"},{"src":"assets/rewards/ww_069.webp","name":"守岸人","series":"鸣潮"},{"src":"assets/rewards/ww_070.webp","name":"弗洛洛","series":"鸣潮"},{"src":"assets/rewards/ww_071.webp","name":"Lynae","series":"鸣潮"},{"src":"assets/rewards/ww_083.webp","name":"Lynae","series":"鸣潮"},{"src":"assets/rewards/ww_095.webp","name":"Balanophora","series":"鸣潮"},{"src":"assets/rewards/ww_093.webp","name":"Balanophora","series":"鸣潮"},{"src":"assets/rewards/ww_100.webp","name":"折枝","series":"鸣潮"},{"src":"assets/rewards/ww_110.webp","name":"Suisui","series":"鸣潮"},{"src":"assets/rewards/ww_130.webp","name":"Suisui","series":"鸣潮"},{"src":"assets/rewards/ww_109.webp","name":"Qingxiao","series":"鸣潮"},{"src":"assets/rewards/ww_113.webp","name":"鸣潮角色","series":"鸣潮"},{"src":"assets/rewards/ww_112.webp","name":"Galbrena","series":"鸣潮"},{"src":"assets/rewards/ww_115.webp","name":"灯灯","series":"鸣潮"},{"src":"assets/rewards/ww_118.webp","name":"Male Rover","series":"鸣潮"},{"src":"assets/rewards/ww_121.webp","name":"Hsin (Moon Fox)","series":"鸣潮"},{"src":"assets/rewards/ww_124.webp","name":"夏空","series":"鸣潮"},{"src":"assets/rewards/ww_006.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_005.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_002.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_009.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_016.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_013.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_014.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_017.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_018.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_019.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_024.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_025.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_026.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_027.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_029.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_030.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_028.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_031.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/ww_033.webp","name":"朔明","series":"鸣潮"},{"src":"assets/rewards/wz_gsl_003.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_001.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_009.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_008.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_010.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_002.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_011.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_006.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_014.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_015.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_012.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_013.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_gsl_007.webp","name":"公孙离","series":"王者荣耀"},{"src":"assets/rewards/wz_005.webp","name":"Lady Sun","series":"王者荣耀"},{"src":"assets/rewards/wz_004.webp","name":"Lady Sun","series":"王者荣耀"},{"src":"assets/rewards/wz_002.webp","name":"Lady Sun","series":"王者荣耀"},{"src":"assets/rewards/wz_003.webp","name":"Lady Sun","series":"王者荣耀"},{"src":"assets/rewards/wz_001.webp","name":"王昭君","series":"王者荣耀"},{"src":"assets/rewards/anime_005.webp","name":"二次元角色","series":"东方Project"},{"src":"assets/rewards/anime_003.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_006.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_007.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_004.webp","name":"二次元角色","series":"东方Project"},{"src":"assets/rewards/anime_002.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_001.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_012.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_010.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_013.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_014.webp","name":"二次元角色","series":"东方Project"},{"src":"assets/rewards/anime_009.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_011.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_008.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_017.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_018.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_019.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_020.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_015.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_016.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_022.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_024.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_026.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_027.webp","name":"二次元角色","series":"蔚蓝档案"},{"src":"assets/rewards/anime_028.webp","name":"二次元角色","series":"东方Project"},{"src":"assets/rewards/anime_029.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_023.webp","name":"二次元角色","series":"明日方舟"},{"src":"assets/rewards/anime_025.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_021.webp","name":"二次元角色","series":"日漫"},{"src":"assets/rewards/anime_033.webp","name":"二次元角色","series":"日漫"}];
 DATA.forEach((w,i)=>{ w.id = 'w'+(i+1); });
+KP.forEach(k=>{ k.id = k.id || ('k'+Math.random().toString(36).slice(2)); });
 const BY_ID = Object.fromEntries(DATA.map(w=>[w.id,w]));
+const KP_BY_ID = Object.fromEntries(KP.map(k=>[k.id,k]));
 const UNIT = Object.fromEntries(UNITS.map(u=>[u.id,u]));
+const WRONG_IMG = 'assets/wrong.jpg';
+const WRONG_CAPS = ['本质菜','菜就多练','就这？','这题也能错','回去背单词','菜是原罪','再练练','别急，先看解析'];
+const GOOD_CAPS = ['答对了，奖励一张','这波很稳','记住这个感觉','继续，别停','情绪价值 +1'];
 const KEY = 'fxz_vocab_v1';
 const INTERVALS = [0,1,2,4,7,15];
 let storageOk = true;
@@ -292,13 +338,13 @@ try { localStorage.setItem('__fxz_test','1'); localStorage.removeItem('__fxz_tes
 catch(e){ storageOk = false; }
 
 function loadState(){
-  const def = {p:{}, h:{}, goal:20, theme:'auto'};
+  const def = {p:{}, kp:{}, h:{}, goal:20, theme:'auto'};
   if(!storageOk) return def;
   try{
     const raw = localStorage.getItem(KEY);
     if(!raw) return def;
     const o = JSON.parse(raw);
-    return {p:o.p||{}, h:o.h||{}, goal:o.goal||20, theme:o.theme||'auto'};
+    return {p:o.p||{}, kp:o.kp||{}, h:o.h||{}, goal:o.goal||20, theme:o.theme||'auto'};
   }catch(e){ return def; }
 }
 let S = loadState();
@@ -313,6 +359,15 @@ function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor
 function pOf(id){
   if(!S.p[id]) S.p[id]={box:0,due:0,seen:false,right:0,wrong:0,star:false,last:''};
   return S.p[id];
+}
+function kpOf(id){
+  if(!S.kp[id]) S.kp[id]={box:0,due:0,seen:false,right:0,wrong:0,last:''};
+  return S.kp[id];
+}
+function kpStatus(k){
+  const p=S.kp[k.id];
+  if(!p||!p.seen) return 'new';
+  return p.box>=4?'mastered':'learning';
 }
 function statusOf(w){
   const p=S.p[w.id];
@@ -348,6 +403,50 @@ function toast(msg){
   const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show');
   clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('show'),1800);
 }
+function showReward(kind){
+  const ov=document.getElementById('rewardOverlay');
+  if(!ov) return;
+  const img=document.getElementById('rewardImg');
+  img.style.opacity='1';
+  img.style.aspectRatio = kind==='wrong' ? '3/4' : '9/16';
+  const badge=document.getElementById('rewardBadge');
+  const name=document.getElementById('rewardName');
+  const series=document.getElementById('rewardSeries');
+  const quote=document.getElementById('rewardQuote');
+  if(kind==='wrong'){
+    img.src=WRONG_IMG;
+    badge.textContent='错题留念'; badge.classList.add('bad');
+    name.textContent='你'; series.textContent='';
+    quote.textContent=WRONG_CAPS[Math.floor(Math.random()*WRONG_CAPS.length)];
+  }else{
+    const r=(REWARDS.length?REWARDS[Math.floor(Math.random()*REWARDS.length)]:null);
+    if(!r){toast('图库还没加载');return}
+    img.src=r.src;
+    badge.textContent='奖励'; badge.classList.remove('bad');
+    name.textContent=r.name; series.textContent='· '+r.series;
+    quote.textContent=GOOD_CAPS[Math.floor(Math.random()*GOOD_CAPS.length)];
+  }
+  img.onerror=()=>{img.style.opacity='.2'};
+  ov.classList.add('show');
+  document.body.style.overflow='hidden';
+}
+function closeReward(){
+  const ov=document.getElementById('rewardOverlay');
+  if(ov) ov.classList.remove('show');
+  document.body.style.overflow='';
+}
+function showSlide(k){
+  if(!k) return;
+  document.getElementById('sheetCard').innerHTML=`
+    <div class="sheet-handle"></div>
+    <div class="sheet-word" style="font-size:18px">${escapeHtml(k.q)}</div>
+    <div class="sheet-zh" style="font-size:13px;margin-top:8px">${escapeHtml(k.a)}</div>
+    <img class="slide-img" style="margin-top:12px" src="${k.slide}" alt="PPT 上下文" loading="lazy">
+    <div class="slide-cap">上下文：${escapeHtml(k.pdf)} · 第 ${k.page} 页</div>
+    <div class="sheet-actions"><button class="btn primary" onclick="closeSheet()">看完了</button></div>
+  `;
+  document.getElementById('sheet').classList.add('open');
+}
 function speak(e,text){
   if(e){e.stopPropagation();e.preventDefault()}
   if(!('speechSynthesis' in window)){toast('当前浏览器不支持朗读');return}
@@ -368,13 +467,14 @@ function setActiveTab(tab){
   document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
 }
 function go(tab){
-  state.tab=tab; study=null; quiz=null;
+  state.tab=tab; study=null; quiz=null; kpSession=null; randomSession=null;
   document.body.classList.remove('focus');
   document.getElementById('view').classList.remove('focus');
   setActiveTab(tab);
   if(tab==='home') renderHome();
   else if(tab==='library') renderLibrary();
-  else if(tab==='quiz') renderQuizHome();
+  else if(tab==='knowledge') renderKnowledge();
+  else if(tab==='quiz') renderRandomHome();
   else renderMe();
   window.scrollTo({top:0,behavior:'auto'});
 }
@@ -420,7 +520,7 @@ function renderHome(){
       </div>
       <div class="hero-actions">
         <button class="btn primary" onclick="${task>0?'startStudy()':'startStudy(null,10)'}">${task>0?'开始今日学习':'再复习一组'}</button>
-        <button class="btn ghost" onclick="startStudy(null,10)">随机 10 词</button>
+        <button class="btn ghost" onclick="go('quiz')">随机抽背</button>
       </div>
     </div>
     <div class="stats">
@@ -428,6 +528,12 @@ function renderHome(){
       <div class="stat"><b>${learning}</b><span>学习中</span></div>
       <div class="stat"><b>${mastered}</b><span>已掌握</span></div>
     </div>
+    <div class="section-title"><div class="h2">知识点 · PPT 上下文</div><button class="link" onclick="go('knowledge')">查看全部</button></div>
+    <button class="kp-hero" style="width:100%;text-align:left" onclick="go('knowledge')">
+      <div class="unit-pill">${KP.length} 个考点</div>
+      <div class="h2" style="margin-top:9px">不会就翻 PPT</div>
+      <div class="sub" style="margin-top:5px">随机抽背 · 答对奖励图 · 答错自拍吐槽</div>
+    </button>
     <div class="section-title"><div class="h2">按单元练习</div><button class="link" onclick="go('library')">查看全部</button></div>
     <div class="unit-grid">
       ${UNITS.map(u=>{const st=unitStats(u.id);const p=st.total?Math.round(st.mastered/st.total*100):0;return `
@@ -554,7 +660,9 @@ function grade(q){
   save();
   study.idx++; study.revealed=false;
   renderStudy();
-  window.scrollTo({top:0,behavior:'instant'});
+  if(q==='good') showReward('good');
+  else if(q==='again') showReward('wrong');
+  window.scrollTo({top:0,behavior:'auto'});
 }
 function renderDone(){
   document.body.classList.add('focus');
@@ -675,6 +783,188 @@ function startSingle(id){
   study={queue:[id],idx:0,revealed:false,unit:null,extra:0,stats:{again:0,hard:0,good:0}};
   document.body.classList.add('focus');document.getElementById('view').classList.add('focus');
   renderStudy();
+}
+
+/* ---------------- KNOWLEDGE ---------------- */
+let kpSession=null, randomSession=null;
+function kpUnitStats(uid){
+  const ks=KP.filter(k=>k.u===uid);
+  let m=0,s=0;
+  ks.forEach(k=>{const st=kpStatus(k);if(st==='mastered')m++;else if(st==='learning')s++});
+  return {total:ks.length,mastered:m,learning:s,new:ks.length-m-s};
+}
+function renderKnowledge(){
+  setActiveTab('knowledge');
+  document.body.classList.remove('focus');
+  document.getElementById('view').classList.remove('focus');
+  const mastered=KP.filter(k=>kpStatus(k)==='mastered').length;
+  document.getElementById('view').innerHTML=`
+    <div class="topbar"><div><div class="h1" style="font-size:24px">知识点</div><div class="sub">${KP.length} 个考点 · 不会就翻 PPT</div></div><button class="icon-btn" onclick="startKp()" aria-label="随机抽背">🎲</button></div>
+    <div class="kp-hero">
+      <div class="unit-pill">随机抽背</div>
+      <div class="h2" style="margin-top:10px">今天抽 10 个考点</div>
+      <div class="sub" style="margin-top:6px">答对奖励一张图，答错看自拍。不会的题可以直接翻对应 PPT 页。</div>
+      <div style="display:flex;gap:8px;margin-top:14px">
+        <button class="btn primary" onclick="startKp()">开始抽背</button>
+        <button class="btn ghost" onclick="go('quiz')">混合抽背</button>
+      </div>
+    </div>
+    <div class="section-title"><div class="h2">按单元复习</div><span class="sub">已掌握 ${mastered}/${KP.length}</span></div>
+    ${UNITS.map(u=>{const st=kpUnitStats(u.id);return `
+      <button class="kp-unit" onclick="startKp('${u.id}')">
+        <div><div class="n">${escapeHtml(u.name)}</div><div class="m">${st.total} 个考点 · 已掌握 ${st.mastered}</div></div>
+        <div style="font-size:18px;color:var(--muted)">›</div>
+      </button>`}).join('')}
+    <div class="footer-note">PPT 上下文截自课程 PDF；图片仅用于个人学习娱乐</div>
+  `;
+}
+function startKp(unitId){
+  let pool=unitId?KP.filter(k=>k.u===unitId):KP;
+  if(!pool.length){toast('这个单元还没有考点');return}
+  kpSession={queue:shuffle(pool).slice(0,10).map(k=>k.id),idx:0,revealed:false,unit:unitId||null,stats:{again:0,hard:0,good:0}};
+  document.body.classList.add('focus');
+  document.getElementById('view').classList.add('focus');
+  renderKpStudy();
+}
+function renderKpStudy(){
+  if(!kpSession||kpSession.idx>=kpSession.queue.length){renderKpDone();return}
+  const k=KP_BY_ID[kpSession.queue[kpSession.idx]];
+  const u=UNIT[k.u];
+  const pct=Math.round(kpSession.idx/kpSession.queue.length*100);
+  document.getElementById('view').innerHTML=`
+    <div class="flash-wrap">
+      <div class="study-top">
+        <button class="icon-btn" onclick="go('knowledge')" aria-label="返回">←</button>
+        <div class="study-progress"><div class="bar"><i style="width:${pct}%"></i></div><div class="meta"><span>${escapeHtml(u.name)}</span><span>${kpSession.idx+1} / ${kpSession.queue.length}</span></div></div>
+        <button class="icon-btn" onclick="showSlide(KP_BY_ID['${k.id}'])" aria-label="PPT">▤</button>
+      </div>
+      <div class="kp-qcard">
+        <div class="unit-pill">考点 ${kpSession.idx+1}</div>
+        <div class="kp-q" style="margin-top:12px">${escapeHtml(k.q)}</div>
+        ${kpSession.revealed?`
+          <div class="kp-a">${escapeHtml(k.a)}</div>
+          ${k.note?`<div class="kp-note">${escapeHtml(k.note)}</div>`:''}
+          <div class="kp-src">出处：${escapeHtml(k.pdf)} · 第 ${k.page} 页</div>
+        `:`<div class="hint" style="margin-top:24px">先自己回想，再看答案</div>`}
+      </div>
+      ${kpSession.revealed?`
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+          <button class="btn ghost" onclick="showSlide(KP_BY_ID['${k.id}'])">看 PPT 上下文</button>
+          <button class="btn ghost" style="color:var(--red)" onclick="gradeKp('again')">不会</button>
+          <button class="btn ghost" style="color:var(--amber)" onclick="gradeKp('hard')">模糊</button>
+          <button class="btn primary" onclick="gradeKp('good')">会了</button>
+        </div>`:`
+        <button class="btn primary wide" style="margin-top:14px" onclick="revealKp()">看答案</button>`}
+      ${kpSession.revealed?'':''}
+    </div>`;
+}
+function revealKp(){ if(kpSession){kpSession.revealed=true;renderKpStudy()} }
+function gradeKp(q){
+  if(!kpSession||kpSession.idx>=kpSession.queue.length) return;
+  const k=KP_BY_ID[kpSession.queue[kpSession.idx]]; const p=kpOf(k.id); const now=Date.now();
+  if(q==='again'){p.box=0;p.due=now+10*60*1000;p.wrong++;kpSession.stats.again++}
+  else if(q==='hard'){p.box=Math.max(1,p.box);p.due=now+24*3600*1000;p.wrong++;kpSession.stats.hard++}
+  else {p.box=Math.min(5,p.box+1);p.due=now+INTERVALS[Math.min(p.box,5)]*24*3600*1000;p.right++;kpSession.stats.good++}
+  p.seen=true;p.last=dkey();save();
+  kpSession.idx++;kpSession.revealed=false;
+  renderKpStudy();
+  if(q==='good') showReward('good'); else if(q==='again') showReward('wrong');
+}
+function renderKpDone(){
+  const st=kpSession?kpSession.stats:{again:0,hard:0,good:0};
+  const n=kpSession?kpSession.queue.length:0;
+  document.getElementById('view').innerHTML=`
+    <div class="done">
+      <div class="done-ico">✓</div>
+      <h2>这组考点完成</h2>
+      <p>不会的已经记下来了，下次抽背还会遇到。</p>
+      <div class="done-stats"><div><b>${n}</b><span>本组考点</span></div><div><b>${st.good}</b><span>会了</span></div><div><b>${st.again}</b><span>不会</span></div></div>
+      <div class="done-actions"><button class="btn primary" onclick="startKp()">再抽 10 个</button><button class="btn ghost" onclick="go('knowledge')">回知识页</button></div>
+    </div>`;
+}
+
+/* ---------------- RANDOM GENERATOR ---------------- */
+function renderRandomHome(){
+  setActiveTab('quiz');
+  document.body.classList.remove('focus');
+  document.getElementById('view').classList.remove('focus');
+  document.getElementById('view').innerHTML=`
+    <div class="topbar"><div><div class="h1" style="font-size:24px">随机抽背</div><div class="sub">${DATA.length} 词 + ${KP.length} 考点 · 无限组合</div></div></div>
+    <div class="quiz-intro">
+      <h2>随机生成，不按套路</h2>
+      <p class="sub">每次从词库和考点里随机抽，可能英译中、中译英，也可能直接问一个考点。答对随机奖励图，答错看自拍。</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="startRandom('all')"><span>混合抽背 · 20 题</span><small>单词 + 考点</small></button>
+        <button class="quiz-opt" onclick="startRandom('word')"><span>只抽单词 · 20 题</span><small>英中双向</small></button>
+        <button class="quiz-opt" onclick="startRandom('kp')"><span>只抽考点 · 20 题</span><small>问答 + PPT</small></button>
+      </div>
+    </div>
+    <div class="guide">
+      <h3>怎么玩</h3>
+      <ol><li>先自己回想，再点“看答案”。</li><li>会了就收一张角色图；不会就看自拍冷静一下。</li><li>考点不会，点“看 PPT 上下文”直接翻到原页。</li></ol>
+    </div>`;
+}
+function startRandom(mode){
+  let pool=[];
+  if(mode!=='kp') DATA.forEach(w=>pool.push({type:'word',id:w.id,dir:Math.random()<.5?'en2zh':'zh2en'}));
+  if(mode!=='word') KP.forEach(k=>pool.push({type:'kp',id:k.id}));
+  if(!pool.length){toast('没有题目');return}
+  randomSession={queue:shuffle(pool).slice(0,20),idx:0,revealed:false,score:0,stats:{good:0,again:0},mode};
+  document.body.classList.add('focus');
+  document.getElementById('view').classList.add('focus');
+  renderRandom();
+}
+function renderRandom(){
+  if(!randomSession||randomSession.idx>=randomSession.queue.length){renderRandomDone();return}
+  const it=randomSession.queue[randomSession.idx];
+  const pct=Math.round(randomSession.idx/randomSession.queue.length*100);
+  let type='',prompt='',answer='',note='',cn=false,k=null;
+  if(it.type==='word'){
+    const w=BY_ID[it.id];
+    if(it.dir==='en2zh'){type='英文 → 中文';prompt=w.t;answer=w.zh;note=w.note||''}
+    else{type='中文 → 英文';prompt=w.zh;answer=w.t;note=w.note||'';cn=true}
+  }else{
+    k=KP_BY_ID[it.id];type='考点问答';prompt=k.q;answer=k.a;note=k.note||'';
+  }
+  document.getElementById('view').innerHTML=`
+    <div class="random-top">
+      <button class="icon-btn" onclick="go('quiz')" aria-label="退出">←</button>
+      <div class="quiz-bar"><i style="width:${pct}%"></i></div>
+      <div class="quiz-count">${randomSession.idx+1}/${randomSession.queue.length}</div>
+      <button class="icon-btn" onclick="showReward('good')" aria-label="图鉴">🖼</button>
+    </div>
+    <div class="random-card">
+      <div class="random-type">${type}</div>
+      <div class="random-prompt ${cn?'cn':''}">${escapeHtml(prompt)}</div>
+      ${randomSession.revealed?`<div class="random-answer"><b style="color:var(--text)">${escapeHtml(answer)}</b>${note?`<br><span style="color:var(--muted);font-size:12px">${escapeHtml(note)}</span>`:''}${k?`<div class="kp-src">出处：${escapeHtml(k.pdf)} · 第 ${k.page} 页</div>`:''}</div>`:''}
+    </div>
+    ${randomSession.revealed?`
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+        ${k?`<button class="btn ghost" onclick="showSlide(KP_BY_ID['${k.id}'])">看 PPT 上下文</button>`:''}
+        <button class="btn ghost" style="color:var(--red)" onclick="gradeRandom('again')">不会</button>
+        <button class="btn primary" onclick="gradeRandom('good')">会了</button>
+      </div>`:`
+      <button class="btn primary wide" style="margin-top:14px" onclick="revealRandom()">看答案</button>`}
+    <div class="hint" style="margin-top:14px">答对随机掉一张图 · 答错看自拍</div>`;
+}
+function revealRandom(){if(randomSession){randomSession.revealed=true;renderRandom()}}
+function gradeRandom(q){
+  if(!randomSession||randomSession.idx>=randomSession.queue.length)return;
+  const it=randomSession.queue[randomSession.idx]; const now=Date.now();
+  if(it.type==='word'){const p=pOf(it.id);if(q==='good'){p.box=Math.min(5,p.box+1);p.due=now+INTERVALS[Math.min(p.box,5)]*86400000;p.right++}else{p.box=0;p.due=now+600000;p.wrong++}p.seen=true;p.last=dkey()}
+  else{const p=kpOf(it.id);if(q==='good'){p.box=Math.min(5,p.box+1);p.due=now+INTERVALS[Math.min(p.box,5)]*86400000;p.right++}else{p.box=0;p.due=now+600000;p.wrong++}p.seen=true;p.last=dkey()}
+  if(q==='good')randomSession.stats.good++;else randomSession.stats.again++;
+  randomSession.idx++;randomSession.revealed=false;save();renderRandom();
+  showReward(q==='good'?'good':'wrong');
+}
+function renderRandomDone(){
+  const st=randomSession?randomSession.stats:{good:0,again:0};
+  const n=randomSession?randomSession.queue.length:0;
+  document.getElementById('view').innerHTML=`
+    <div class="done"><div class="done-ico">✓</div><h2>抽背完成</h2>
+      <p>答对 ${st.good} 题，答错 ${st.again} 题。错题已经回到复习队列。</p>
+      <div class="done-actions"><button class="btn primary" onclick="startRandom('${randomSession?randomSession.mode:'all'}')">再来 20 题</button><button class="btn ghost" onclick="go('quiz')">回抽背页</button></div>
+    </div>`;
 }
 
 /* ---------------- QUIZ ---------------- */
@@ -857,7 +1147,7 @@ function renderMe(){
       </ol>
       <div style="margin-top:8px;color:var(--muted);font-size:11px">所有词条、样式和脚本都在一个文件里；在线版不依赖电脑，“朗读”使用手机系统英文语音。</div>
     </div>
-    <div class="footer-note">词表整理自《分细组》课程讲义<br>共 ${total} 词 · 12 个单元 · 版本 1.0</div>
+    <div class="footer-note">词表整理自《分细组》课程讲义<br>共 ${total} 词 · 12 个单元 · 96 考点 · 版本 2.0</div>
   `;
 }
 function setGoal(n){S.goal=n;save();renderMe();toast('每日目标已设为 '+n+' 词')}
@@ -871,7 +1161,7 @@ function exportProgress(){
 }
 function resetProgress(){
   if(!confirm('确定清空所有学习进度、收藏和统计吗？此操作不可撤销。')) return;
-  S={p:{},h:{},goal:S.goal,theme:S.theme};save();toast('进度已清空');renderMe();
+  S={p:{},kp:{},h:{},goal:S.goal,theme:S.theme};save();toast('进度已清空');renderMe();
 }
 
 /* ---------------- INIT ---------------- */
