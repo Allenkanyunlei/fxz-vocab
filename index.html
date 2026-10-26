@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-title" content="分细组词卡">
+<meta name="theme-color" content="#f4f6f8">
+<title>分细组 · 医学英语词卡</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{
+  --bg:#f3f5f7; --bg2:#e9eef2; --card:#ffffff; --card2:#f8fafb;
+  --text:#101418; --text2:#3d4650; --muted:#7b8794; --line:#e3e8ed;
+  --accent:#0e9f8e; --accent2:#2dd4bf; --accent-soft:#e2f6f3;
+  --red:#e05252; --red-soft:#fdecec; --amber:#d99023; --amber-soft:#fdf3e2;
+  --green:#178f62; --green-soft:#e8f6ef; --blue:#3b82f6;
+  --shadow:0 10px 30px rgba(16,24,32,.08), 0 2px 8px rgba(16,24,32,.04);
+  --radius:22px;
+}
+:root[data-theme="dark"]{
+  --bg:#0b0f12; --bg2:#11171c; --card:#151c22; --card2:#1a232b;
+  --text:#f2f5f7; --text2:#c3ccd4; --muted:#8b98a5; --line:#26313a;
+  --accent:#2dd4bf; --accent2:#5eead4; --accent-soft:#12332f;
+  --red:#f07171; --red-soft:#331b1b; --amber:#e8b45a; --amber-soft:#332817;
+  --green:#4ade80; --green-soft:#123024; --blue:#60a5fa;
+  --shadow:0 12px 34px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.2);
+}
+@media (prefers-color-scheme: dark){
+  :root[data-theme="auto"]{
+    --bg:#0b0f12; --bg2:#11171c; --card:#151c22; --card2:#1a232b;
+    --text:#f2f5f7; --text2:#c3ccd4; --muted:#8b98a5; --line:#26313a;
+    --accent:#2dd4bf; --accent2:#5eead4; --accent-soft:#12332f;
+    --red:#f07171; --red-soft:#331b1b; --amber:#e8b45a; --amber-soft:#332817;
+    --green:#4ade80; --green-soft:#123024; --blue:#60a5fa;
+    --shadow:0 12px 34px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.2);
+  }
+}
+html,body{margin:0;padding:0;min-height:100%}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC","Helvetica Neue",Arial,sans-serif;
+  -webkit-text-size-adjust:100%;
+  background:
+    radial-gradient(900px 500px at 50% -180px, var(--accent-soft), transparent 70%),
+    linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+  background-attachment:fixed;
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  min-height:100dvh;
+}
+button,input,select{font:inherit;color:inherit}
+button{border:0;background:none;cursor:pointer}
+#app{
+  width:100%;max-width:560px;margin:0 auto;min-height:100vh;min-height:100dvh;position:relative;
+  background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 240px);
+}
+@media (min-width:620px){
+  body{padding:18px 0}
+  #app{border-radius:34px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.18);min-height:calc(100dvh - 36px);border:1px solid var(--line)}
+}
+#view{padding:calc(14px + env(safe-area-inset-top)) 16px calc(96px + env(safe-area-inset-bottom));min-height:100vh;min-height:100dvh}
+#view.focus{padding-bottom:calc(18px + env(safe-area-inset-bottom))}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 2px 14px}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-weight:800;font-size:15px;letter-spacing:-.5px;box-shadow:0 6px 16px rgba(14,159,142,.28);flex:0 0 auto}
+.brand-txt{min-width:0}
+.brand-title{font-size:15px;font-weight:800;letter-spacing:.2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand-sub{font-size:11px;color:var(--muted);margin-top:2px;letter-spacing:.3px}
+.icon-btn{width:40px;height:40px;border-radius:14px;display:grid;place-items:center;background:var(--card);border:1px solid var(--line);color:var(--text2);box-shadow:0 2px 6px rgba(0,0,0,.03)}
+.icon-btn:active{transform:scale(.94)}
+h1,h2,h3,p{margin:0}
+.h1{font-size:28px;line-height:1.16;font-weight:850;letter-spacing:-.6px}
+.h2{font-size:20px;line-height:1.25;font-weight:800;letter-spacing:-.3px}
+.sub{font-size:12.5px;color:var(--muted);line-height:1.6}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 10px}
+.section-title .h2{font-size:16px}
+.section-title .link{font-size:12px;color:var(--accent);font-weight:700}
+.hero{position:relative;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:18px;box-shadow:var(--shadow);overflow:hidden}
+.hero:after{content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-80px;top:-90px;background:radial-gradient(circle,var(--accent-soft),transparent 70%)}
+.hero-top{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;position:relative;z-index:1}
+.hello{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.8px;text-transform:uppercase}
+.hero h1{margin-top:6px}
+.ring-wrap{width:118px;height:118px;position:relative;flex:0 0 auto}
+.ring-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--line);stroke-width:10}
+.ring-fg{fill:none;stroke:url(#ringGrad);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .6s ease}
+.ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring-num{font-size:25px;font-weight:850;letter-spacing:-1px;line-height:1}
+.ring-lab{font-size:10px;color:var(--muted);margin-top:4px}
+.hero-actions{display:flex;gap:10px;margin-top:16px;position:relative;z-index:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;padding:13px 16px;font-size:14px;font-weight:800;letter-spacing:.1px;transition:transform .12s ease,opacity .12s ease;white-space:nowrap}
+.btn:active{transform:scale(.975)}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 8px 20px rgba(14,159,142,.24);flex:1}
+.btn.ghost{background:var(--card2);border:1px solid var(--line);color:var(--text2)}
+.btn.soft{background:var(--accent-soft);color:var(--accent)}
+.btn.wide{width:100%}
+.btn.sm{padding:9px 12px;border-radius:12px;font-size:12.5px}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 10px;text-align:center}
+.stat b{display:block;font-size:19px;font-weight:850;letter-spacing:-.4px}
+.stat span{display:block;font-size:10.5px;color:var(--muted);margin-top:3px}
+.unit-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.unit-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:13px;text-align:left;box-shadow:0 2px 8px rgba(0,0,0,.025);position:relative;overflow:hidden}
+.unit-card:active{transform:scale(.985)}
+.unit-name{font-size:12.5px;font-weight:800;line-height:1.35;min-height:34px;display:flex;align-items:flex-start}
+.unit-meta{display:flex;align-items:center;justify-content:space-between;margin-top:8px;font-size:10px;color:var(--muted)}
+.mini-bar{height:4px;border-radius:4px;background:var(--line);overflow:hidden;margin-top:8px}
+.mini-bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.banner{display:flex;gap:9px;align-items:flex-start;background:var(--amber-soft);border:1px solid color-mix(in srgb,var(--amber) 30%,transparent);color:var(--text2);border-radius:16px;padding:11px 12px;font-size:11.5px;line-height:1.55;margin-bottom:12px}
+.banner b{color:var(--amber)}
+.search-wrap{position:relative;margin-top:4px}
+.search{width:100%;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:13px 14px 13px 40px;font-size:14px;outline:none;box-shadow:0 2px 8px rgba(0,0,0,.03)}
+.search::placeholder{color:var(--muted)}
+.search-ico{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.filters{display:flex;flex-wrap:wrap;gap:7px;padding:10px 0 2px}
+.chip{flex:0 0 auto;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;background:var(--card);border:1px solid var(--line);color:var(--text2)}
+.chip.active{background:var(--text);border-color:var(--text);color:var(--bg)}
+select.chip{appearance:none;padding-right:28px;background-image:linear-gradient(45deg,transparent 50%,var(--muted) 50%),linear-gradient(135deg,var(--muted) 50%,transparent 50%);background-position:calc(100% - 14px) 50%,calc(100% - 10px) 50%;background-size:4px 4px,4px 4px;background-repeat:no-repeat}
+.list-head{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 8px;font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.4px}
+.word-row{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 12px;margin-bottom:7px}
+.word-row:active{transform:scale(.992)}
+.dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto;background:var(--line)}
+.dot.new{background:var(--blue)} .dot.learning{background:var(--amber)} .dot.mastered{background:var(--green)}
+.word-main{display:block;min-width:0;flex:1}
+.word-term{display:block;font-size:14px;font-weight:800;line-height:1.35;word-break:break-word}
+.word-zh{display:block;font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+.star{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;color:var(--muted);flex:0 0 auto}
+.star.on{color:#e8a317;background:#fdf3e2}
+.flash-wrap{display:flex;flex-direction:column;min-height:calc(100dvh - 120px)}
+.study-top{display:flex;align-items:center;gap:10px;padding:4px 0 12px}
+.study-progress{flex:1;min-width:0}
+.study-progress .bar{height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.study-progress .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .35s ease}
+.study-progress .meta{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted);margin-top:6px;font-weight:700}
+.flashcard{perspective:1400px;width:100%;height:390px;min-height:330px;margin:6px 0 14px;cursor:pointer;user-select:none;-webkit-user-select:none}
+.card-inner{position:relative;width:100%;height:100%;transition:transform .55s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flashcard.flipped .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:28px;padding:20px;background:var(--card);border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden}
+.card-face:before{content:"";position:absolute;right:-70px;top:-90px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,var(--accent-soft),transparent 68%);pointer-events:none}
+.card-face.back{transform:rotateY(180deg);background:linear-gradient(160deg,var(--card),var(--card2))}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;z-index:1}
+.unit-pill{display:inline-flex;align-items:center;gap:6px;background:var(--accent-soft);color:var(--accent);border-radius:999px;padding:6px 10px;font-size:10.5px;font-weight:800;letter-spacing:.3px}
+.speak{width:38px;height:38px;border-radius:13px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;color:var(--text2)}
+.speak:active{transform:scale(.92)}
+.term{font-size:40px;line-height:1.12;font-weight:850;letter-spacing:-1.5px;word-break:break-word;margin:auto 0;position:relative;z-index:1;text-align:left}
+.term.small{font-size:31px;letter-spacing:-.9px}
+.term.xsmall{font-size:25px;letter-spacing:-.4px}
+.term-sub{font-size:12px;color:var(--muted);margin-top:10px;font-weight:600;letter-spacing:.2px}
+.hint{font-size:11px;color:var(--muted);text-align:center;margin-top:auto;padding-top:12px;letter-spacing:.4px}
+.zh{font-size:31px;line-height:1.3;font-weight:850;letter-spacing:-.6px;margin:auto 0 0;position:relative;z-index:1}
+.note{font-size:13px;line-height:1.7;color:var(--text2);margin-top:12px;padding:11px 12px;background:var(--card2);border-radius:14px;border:1px solid var(--line);position:relative;z-index:1}
+.grade-row{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:9px;margin-top:auto}
+.grade{border-radius:18px;padding:14px 8px;font-size:13px;font-weight:850;display:flex;flex-direction:column;align-items:center;gap:4px;border:1px solid var(--line);background:var(--card)}
+.grade small{font-size:9.5px;font-weight:600;opacity:.7}
+.grade.again{color:var(--red);background:var(--red-soft);border-color:color-mix(in srgb,var(--red) 22%,transparent)}
+.grade.hard{color:var(--amber);background:var(--amber-soft);border-color:color-mix(in srgb,var(--amber) 22%,transparent)}
+.grade.good{color:var(--green);background:var(--green-soft);border-color:color-mix(in srgb,var(--green) 22%,transparent)}
+.grade:active{transform:scale(.97)}
+.kbd-tip{text-align:center;font-size:10px;color:var(--muted);margin-top:12px;display:none}
+@media (hover:hover) and (pointer:fine){.kbd-tip{display:block}}
+.done{min-height:calc(100dvh - 190px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px 8px}
+.done-ico{width:82px;height:82px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;margin-bottom:18px;border:1px solid color-mix(in srgb,var(--green) 25%,transparent)}
+.done h2{font-size:25px;font-weight:850;letter-spacing:-.6px}
+.done p{color:var(--muted);font-size:13px;line-height:1.7;margin-top:8px;max-width:300px}
+.done-stats{display:flex;gap:18px;margin-top:20px}
+.done-stats b{display:block;font-size:22px;font-weight:850}
+.done-stats span{font-size:10px;color:var(--muted)}
+.done-actions{display:flex;gap:9px;margin-top:24px;width:100%;max-width:320px}
+.quiz-intro{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-top:8px}
+.quiz-intro h2{font-size:22px;font-weight:850;letter-spacing:-.5px;margin-bottom:6px}
+.quiz-opts{display:flex;flex-direction:column;gap:9px;margin-top:18px}
+.quiz-opt{display:flex;align-items:center;justify-content:space-between;background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:15px;font-weight:800;font-size:14px}
+.quiz-opt small{color:var(--muted);font-size:11px;font-weight:600}
+.quiz-opt:active{transform:scale(.985)}
+.quiz-top{display:flex;align-items:center;gap:10px;padding:4px 0 12px}
+.quiz-bar{flex:1;height:6px;background:var(--line);border-radius:6px;overflow:hidden}
+.quiz-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;transition:width .3s}
+.quiz-count{font-size:11px;color:var(--muted);font-weight:700;white-space:nowrap}
+.question-card{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px 20px;box-shadow:var(--shadow);margin-top:4px}
+.q-dir{font-size:10.5px;font-weight:800;color:var(--accent);letter-spacing:.8px;text-transform:uppercase}
+.q-term{font-size:34px;line-height:1.2;font-weight:850;letter-spacing:-1px;margin-top:10px;word-break:break-word}
+.q-term.cn{font-size:29px}
+.q-note{font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.6}
+.answers{display:flex;flex-direction:column;gap:9px;margin-top:16px}
+.answer{display:flex;align-items:center;gap:11px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;font-size:13.5px;font-weight:650;line-height:1.4;min-height:52px}
+.answer .letter{width:24px;height:24px;border-radius:8px;background:var(--card2);border:1px solid var(--line);display:grid;place-items:center;font-size:10px;font-weight:800;flex:0 0 auto;color:var(--muted)}
+.answer.correct{border-color:var(--green);background:var(--green-soft);color:var(--green)}
+.answer.correct .letter{background:var(--green);color:#fff;border-color:var(--green)}
+.answer.wrong{border-color:var(--red);background:var(--red-soft);color:var(--red)}
+.answer.wrong .letter{background:var(--red);color:#fff;border-color:var(--red)}
+.answer[disabled]{opacity:1}
+.feedback{display:flex;align-items:flex-start;gap:9px;border-radius:14px;padding:11px 12px;font-size:12px;line-height:1.6;margin-top:12px}
+.feedback.ok{background:var(--green-soft);color:var(--green)}
+.feedback.no{background:var(--red-soft);color:var(--red)}
+.quiz-result{text-align:center;padding:24px 8px}
+.score-ring{width:132px;height:132px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--accent) calc(var(--score)*1%), var(--line) 0);position:relative}
+.score-ring:after{content:"";position:absolute;inset:10px;border-radius:50%;background:var(--card)}
+.score-ring b{position:relative;z-index:1;font-size:30px;font-weight:850}
+.score-ring span{position:relative;z-index:1;font-size:10px;color:var(--muted);display:block;text-align:center}
+.wrong-list{margin-top:18px;text-align:left}
+.me-hero{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.avatar{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;color:#fff;font-weight:850;font-size:18px}
+.me-name{font-size:16px;font-weight:850}
+.me-sub{font-size:11.5px;color:var(--muted);margin-top:3px}
+.big-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:12px}
+.big-stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px}
+.big-stat b{font-size:24px;font-weight:850;letter-spacing:-.8px}
+.big-stat span{display:block;font-size:10.5px;color:var(--muted);margin-top:3px}
+.week{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px 14px 12px;margin-top:12px;height:150px}
+.day{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px;height:100%;justify-content:flex-end}
+.day-bar{width:100%;max-width:22px;height:76px;background:var(--line);border-radius:7px;min-height:4px;position:relative;overflow:hidden}
+.day-bar i{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(180deg,var(--accent2),var(--accent));border-radius:7px}
+.day.today .day-bar{outline:2px solid var(--accent);outline-offset:1px}
+.day span{font-size:9px;color:var(--muted)}
+.setting{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:8px}
+.setting .st{font-size:13px;font-weight:750}
+.setting .sd{font-size:10.5px;color:var(--muted);margin-top:2px;line-height:1.45}
+.seg{display:flex;background:var(--card2);border:1px solid var(--line);border-radius:11px;padding:3px;gap:2px}
+.seg button{padding:6px 9px;border-radius:8px;font-size:10.5px;font-weight:750;color:var(--muted)}
+.seg button.active{background:var(--card);color:var(--text);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.guide{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin-top:12px;font-size:12px;line-height:1.75;color:var(--text2)}
+.guide h3{font-size:13px;font-weight:850;margin-bottom:8px;color:var(--text)}
+.guide ol{padding-left:18px;margin:0}
+.guide li{margin:5px 0}
+.guide code{background:var(--card2);padding:2px 5px;border-radius:5px;font-size:11px}
+.tabbar{
+  position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:560px;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:var(--card);
+  background:color-mix(in srgb,var(--card) 88%,transparent);
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  border-top:1px solid var(--line);z-index:40;
+}
+body.focus .tabbar{display:none}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px;border-radius:13px;color:var(--muted);font-size:9.5px;font-weight:750;letter-spacing:.2px}
+.tab svg{width:21px;height:21px}
+.tab.active{color:var(--accent);background:var(--accent-soft)}
+.toast{position:fixed;left:50%;bottom:calc(86px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:var(--text);color:var(--bg);padding:10px 15px;border-radius:12px;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:all .25s ease;z-index:100;max-width:88%;text-align:center;line-height:1.5}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.sheet{position:fixed;inset:0;z-index:90;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.38);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
+.sheet.open{display:flex}
+.sheet-card{width:100%;max-width:560px;background:var(--card);border-radius:26px 26px 0 0;padding:12px 18px calc(24px + env(safe-area-inset-bottom));box-shadow:0 -20px 50px rgba(0,0,0,.25);animation:up .25s ease}
+@keyframes up{from{transform:translateY(40px);opacity:.6}to{transform:translateY(0);opacity:1}}
+.sheet-handle{width:38px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 12px}
+.sheet-word{font-size:25px;font-weight:850;letter-spacing:-.6px;line-height:1.3}
+.sheet-zh{font-size:15px;color:var(--text2);margin-top:6px;font-weight:650}
+.sheet-note{font-size:12px;line-height:1.7;color:var(--muted);margin-top:10px;background:var(--card2);padding:10px 12px;border-radius:12px}
+.sheet-actions{display:flex;gap:8px;margin-top:14px}
+.sheet-actions .btn{flex:1}
+.empty{text-align:center;color:var(--muted);font-size:12.5px;padding:36px 12px;line-height:1.7}
+.empty b{display:block;color:var(--text);font-size:15px;margin-bottom:4px}
+.footer-note{text-align:center;font-size:10px;color:var(--muted);line-height:1.6;margin-top:26px;padding-bottom:4px}
+@media (max-width:360px){
+  #view{padding-left:13px;padding-right:13px}
+  .term{font-size:33px}
+  .term.small{font-size:27px}
+  .term.xsmall{font-size:22px}
+  .flashcard{height:360px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <main id="view"></main>
+</div>
+<nav class="tabbar" id="tabbar">
+  <button class="tab" data-tab="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg><span>学习</span></button>
+  <button class="tab" data-tab="library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5z"/><path d="M8 7h8M8 11h6"/></svg><span>词库</span></button>
+  <button class="tab" data-tab="quiz"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9a3 3 0 1 1 4.5 2.6c-.9.6-1.5 1.2-1.5 2.4"/><circle cx="12" cy="17.5" r=".6" fill="currentColor" stroke="none"/><path d="M4 4h16v16H4z"/></svg><span>测验</span></button>
+  <button class="tab" data-tab="me"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c.8-4 4-6.5 8-6.5s7.2 2.5 8 6.5"/></svg><span>我的</span></button>
+</nav>
+<div class="toast" id="toast"></div>
+<div class="sheet" id="sheet" onclick="if(event.target===this)closeSheet()"><div class="sheet-card" id="sheetCard"></div></div>
+
+<script>
+const UNITS = [{"id":"u1","name":"绪论与研究技术","short":"绪论"},{"id":"u2","name":"上皮组织","short":"上皮"},{"id":"u3","name":"结缔组织","short":"结缔"},{"id":"u4","name":"肌组织","short":"肌组织"},{"id":"u5","name":"软骨·骨·血液","short":"软骨骨血"},{"id":"u6","name":"细胞的化学组成","short":"化学组成"},{"id":"u7","name":"蛋白质","short":"蛋白质"},{"id":"u8","name":"核酸","short":"核酸"},{"id":"u9","name":"细胞膜与细胞骨架","short":"膜与骨架"},{"id":"u10","name":"内膜系统与细胞器","short":"内膜系统"},{"id":"u11","name":"线粒体","short":"线粒体"},{"id":"u12","name":"细胞核","short":"细胞核"}];
+const DATA = [{"u":"u1","t":"tissue","zh":"组织","note":"形态相似、功能相关的细胞和细胞外基质构成"},{"u":"u1","t":"histology","zh":"组织学","note":"研究正常人体微细结构及其相关功能"},{"u":"u1","t":"cell","zh":"细胞","note":"机体结构和功能的基本单位"},{"u":"u1","t":"organ","zh":"器官","note":"几种组织组合成具有一定形态和功能的结构"},{"u":"u1","t":"organ system","zh":"器官系统","note":"多个器官协同完成连续功能"},{"u":"u1","t":"primary tissue","zh":"基本组织","note":"上皮、结缔、肌、神经四大类"},{"u":"u1","t":"light microscope (LM)","zh":"光学显微镜","note":"分辨率约 0.2 μm"},{"u":"u1","t":"electron microscope (EM)","zh":"电子显微镜","note":"分辨率可达 0.2 nm"},{"u":"u1","t":"resolution","zh":"分辨率","note":"能分辨两点之间的最小距离"},{"u":"u1","t":"hematoxylin-eosin staining (H-E)","zh":"苏木精-伊红染色","note":"嗜碱性染成紫蓝，嗜酸性染成粉红"},{"u":"u1","t":"periodic acid-Schiff reaction (PAS)","zh":"过碘酸-希夫反应","note":"显示糖类，阳性为紫红色沉淀"},{"u":"u1","t":"immunohistochemistry","zh":"免疫组织化学","note":"利用抗原-抗体特异结合定位"},{"u":"u1","t":"immunofluorescence","zh":"免疫荧光","note":"荧光标记抗体显示抗原分布"},{"u":"u1","t":"confocal microscopy","zh":"激光扫描共聚焦显微镜","note":"光学切片与三维重建"},{"u":"u1","t":"transmission electron microscopy (TEM)","zh":"透射电镜","note":"观察细胞内部超微结构"},{"u":"u1","t":"scanning electron microscopy (SEM)","zh":"扫描电镜","note":"观察细胞或组织表面立体形态"},{"u":"u1","t":"cryo-electron microscopy (Cryo-EM)","zh":"冷冻电镜","note":"近原子分辨率解析生物大分子结构"},{"u":"u1","t":"cell theory","zh":"细胞学说","note":"细胞是生物体结构和功能的基本单位"},{"u":"u2","t":"covering epithelium","zh":"被覆上皮","note":"覆盖体表或衬贴管腔、囊腔"},{"u":"u2","t":"simple squamous epithelium","zh":"单层扁平上皮","note":"薄，利于物质交换"},{"u":"u2","t":"simple cuboidal epithelium","zh":"单层立方上皮","note":"见于肾小管、甲状腺滤泡等"},{"u":"u2","t":"simple columnar epithelium","zh":"单层柱状上皮","note":"以吸收和分泌为主"},{"u":"u2","t":"stratified squamous epithelium","zh":"复层扁平上皮","note":"耐摩擦，起保护作用"},{"u":"u2","t":"transitional epithelium","zh":"变移上皮","note":"排尿管道，细胞层数随充盈变化"},{"u":"u2","t":"endothelium","zh":"内皮","note":"衬贴心血管和淋巴管腔面"},{"u":"u2","t":"mesothelium","zh":"间皮","note":"衬贴胸膜、腹膜和心包腔面"},{"u":"u2","t":"microvillus","zh":"微绒毛","note":"游离面指状突起，扩大吸收面积"},{"u":"u2","t":"cilium","zh":"纤毛","note":"可摆动，核心为“9+2”微管结构"},{"u":"u2","t":"stereocilia","zh":"静纤毛","note":"长而不动，实为微绒毛，见于附睾等"},{"u":"u2","t":"cell coat","zh":"细胞衣","note":"即糖萼/糖衣，参与黏附与识别"},{"u":"u2","t":"tight junction","zh":"紧密连接","note":"封闭细胞间隙，形成屏障"},{"u":"u2","t":"intermediate junction","zh":"中间连接","note":"黏着连接，维持细胞形态"},{"u":"u2","t":"desmosome","zh":"桥粒","note":"牢固连接，耐机械张力"},{"u":"u2","t":"gap junction","zh":"缝隙连接","note":"连接子通道，介导细胞间通讯"},{"u":"u2","t":"hemidesmosome","zh":"半桥粒","note":"上皮细胞基底面与基膜的连接"},{"u":"u2","t":"basement membrane","zh":"基膜","note":"上皮与结缔组织之间的支持层"},{"u":"u2","t":"basal lamina","zh":"基板","note":"基膜的致密层，含IV型胶原等"},{"u":"u2","t":"plasma membrane infolding","zh":"质膜内褶","note":"基底面内陷，扩大物质交换面积"},{"u":"u2","t":"junctional complex","zh":"连接复合体","note":"紧密连接、中间连接和桥粒依次出现"},{"u":"u2","t":"glandular epithelium","zh":"腺上皮","note":"以分泌为主要功能的上皮"},{"u":"u2","t":"acinus","zh":"腺泡","note":"浆液性腺的分泌单位"},{"u":"u2","t":"goblet cell","zh":"杯状细胞","note":"分泌黏液，PAS 阳性"},{"u":"u3","t":"mesenchyme","zh":"间充质","note":"胚胎性结缔组织，中胚层来源"},{"u":"u3","t":"connective tissue proper","zh":"固有结缔组织","note":"疏松、致密、网状和脂肪组织"},{"u":"u3","t":"loose connective tissue","zh":"疏松结缔组织","note":"细胞少、纤维疏松、基质多"},{"u":"u3","t":"dense connective tissue","zh":"致密结缔组织","note":"纤维多而密，支持连接为主"},{"u":"u3","t":"collagenous fiber","zh":"胶原纤维","note":"I/III 型胶原，嗜酸性，有横纹"},{"u":"u3","t":"elastic fiber","zh":"弹性纤维","note":"弹性蛋白加微原纤维，可回弹"},{"u":"u3","t":"reticular fiber","zh":"网状纤维","note":"III 型胶原，嗜银性，构成支架"},{"u":"u3","t":"ground substance","zh":"基质","note":"无定形，含蛋白多糖和糖蛋白"},{"u":"u3","t":"tissue fluid","zh":"组织液","note":"血浆滤过形成，物质交换媒介"},{"u":"u3","t":"fibroblast","zh":"成纤维细胞","note":"合成胶原和基质"},{"u":"u3","t":"macrophage","zh":"巨噬细胞","note":"吞噬、抗原提呈"},{"u":"u3","t":"plasma cell","zh":"浆细胞","note":"来自 B 细胞，分泌抗体"},{"u":"u3","t":"mast cell","zh":"肥大细胞","note":"释放组胺、肝素，参与过敏"},{"u":"u3","t":"adipocyte","zh":"脂肪细胞","note":"储存脂滴，分泌脂肪因子"},{"u":"u3","t":"monocyte","zh":"单核细胞","note":"巨噬细胞的前体"},{"u":"u3","t":"chemotaxis","zh":"趋化性","note":"沿化学梯度定向迁移"},{"u":"u3","t":"antigen-presenting cell (APC)","zh":"抗原提呈细胞","note":"提呈抗原给 T 细胞"},{"u":"u3","t":"collagen","zh":"胶原蛋白","note":"细胞外基质主要结构蛋白"},{"u":"u3","t":"adipose tissue","zh":"脂肪组织","note":"储存脂肪、保温、内分泌"},{"u":"u3","t":"adipokine","zh":"脂肪因子","note":"脂肪细胞分泌的活性分子"},{"u":"u3","t":"leptin","zh":"瘦素","note":"调节食欲和能量平衡"},{"u":"u3","t":"niche","zh":"微环境/龛","note":"干细胞所处的特殊微环境"},{"u":"u4","t":"muscle fiber","zh":"肌纤维","note":"肌细胞，细长形"},{"u":"u4","t":"sarcoplasm","zh":"肌质","note":"肌细胞质"},{"u":"u4","t":"sarcolemma","zh":"肌膜","note":"肌细胞膜"},{"u":"u4","t":"sarcoplasmic reticulum","zh":"肌质网","note":"储存和释放 Ca²⁺"},{"u":"u4","t":"myofibril","zh":"肌原纤维","note":"肌纤维内的收缩装置"},{"u":"u4","t":"isotropic band (I band)","zh":"明带","note":"仅细肌丝，各向同性"},{"u":"u4","t":"anisotropic band (A band)","zh":"暗带","note":"粗肌丝所在，各向异性"},{"u":"u4","t":"sarcomere","zh":"肌节","note":"相邻 Z 线之间，收缩基本单位"},{"u":"u4","t":"thick filament","zh":"粗肌丝","note":"由肌球蛋白组成"},{"u":"u4","t":"thin filament","zh":"细肌丝","note":"由肌动蛋白、原肌球蛋白和肌钙蛋白组成"},{"u":"u4","t":"myosin","zh":"肌球蛋白","note":"粗肌丝主要蛋白，具 ATP 酶活性"},{"u":"u4","t":"actin","zh":"肌动蛋白","note":"细肌丝主要蛋白"},{"u":"u4","t":"tropomyosin","zh":"原肌球蛋白","note":"遮挡肌动蛋白上的结合位点"},{"u":"u4","t":"troponin","zh":"肌钙蛋白","note":"结合 Ca²⁺，触发收缩"},{"u":"u4","t":"transverse tubule","zh":"横小管","note":"肌膜内陷，传导兴奋"},{"u":"u4","t":"terminal cisternae","zh":"终池","note":"肌质网膨大，储存 Ca²⁺"},{"u":"u4","t":"triad","zh":"三联体","note":"横小管加两侧终池"},{"u":"u4","t":"intercalated disk","zh":"闰盘","note":"心肌细胞间的连接结构"},{"u":"u4","t":"skeletal muscle","zh":"骨骼肌","note":"随意肌，多核，横纹明显"},{"u":"u4","t":"cardiac muscle","zh":"心肌","note":"有横纹和闰盘，不随意"},{"u":"u4","t":"smooth muscle","zh":"平滑肌","note":"无横纹，梭形细胞"},{"u":"u4","t":"red fiber","zh":"红肌纤维","note":"氧化代谢强，耐疲劳"},{"u":"u4","t":"white fiber","zh":"白肌纤维","note":"糖酵解强，收缩快"},{"u":"u5","t":"cartilage","zh":"软骨","note":"软骨细胞、基质和纤维构成"},{"u":"u5","t":"chondrocyte","zh":"软骨细胞","note":"位于软骨陷窝内"},{"u":"u5","t":"isogenous group","zh":"同源细胞群","note":"一个软骨细胞分裂形成的小群"},{"u":"u5","t":"cartilage lacuna","zh":"软骨陷窝","note":"软骨细胞所在的小腔"},{"u":"u5","t":"hyaline cartilage","zh":"透明软骨","note":"II 型胶原，见于关节软骨等"},{"u":"u5","t":"elastic cartilage","zh":"弹性软骨","note":"弹性纤维丰富，见于耳廓等"},{"u":"u5","t":"fibrocartilage","zh":"纤维软骨","note":"胶原纤维束多，见于椎间盘等"},{"u":"u5","t":"bone matrix","zh":"骨基质","note":"有机质和骨盐构成"},{"u":"u5","t":"osteoid","zh":"类骨质","note":"未矿化的骨基质"},{"u":"u5","t":"bone lamella","zh":"骨板","note":"胶原纤维平行排列的板层"},{"u":"u5","t":"osteoblast","zh":"成骨细胞","note":"分泌类骨质，参与成骨"},{"u":"u5","t":"osteocyte","zh":"骨细胞","note":"位于骨陷窝，维持骨基质"},{"u":"u5","t":"osteoclast","zh":"破骨细胞","note":"多核，吸收骨组织"},{"u":"u5","t":"osteon","zh":"骨单位","note":"哈佛系统，密质骨基本结构单位"},{"u":"u5","t":"bone lacuna","zh":"骨陷窝","note":"骨细胞胞体所在腔"},{"u":"u5","t":"bone canaliculi","zh":"骨小管","note":"骨细胞突起所在管道"},{"u":"u5","t":"compact bone","zh":"骨密质","note":"骨板致密，位于骨表面"},{"u":"u5","t":"spongy bone","zh":"骨松质","note":"骨小梁网，位于骨内部"},{"u":"u5","t":"epiphyseal plate","zh":"骺板","note":"软骨内成骨的生长板"},{"u":"u5","t":"intramembranous ossification","zh":"膜内成骨","note":"直接从间充质形成骨"},{"u":"u5","t":"endochondral ossification","zh":"软骨内成骨","note":"先形成软骨再替换为骨"},{"u":"u5","t":"plasma","zh":"血浆","note":"血液的液体成分"},{"u":"u5","t":"serum","zh":"血清","note":"血浆去除纤维蛋白原后所得"},{"u":"u5","t":"erythrocyte","zh":"红细胞","note":"运输 O₂ 和 CO₂"},{"u":"u5","t":"hemoglobin","zh":"血红蛋白","note":"红细胞内的载氧蛋白"},{"u":"u5","t":"leukocyte","zh":"白细胞","note":"参与免疫防御"},{"u":"u5","t":"lymphocyte","zh":"淋巴细胞","note":"参与特异性免疫"},{"u":"u5","t":"blood platelet","zh":"血小板","note":"参与止血和凝血"},{"u":"u5","t":"hematopoietic stem cell (HSC)","zh":"造血干细胞","note":"生成各种血细胞"},{"u":"u5","t":"neutrophil","zh":"中性粒细胞","note":"急性炎症中吞噬病原体"},{"u":"u5","t":"eosinophil","zh":"嗜酸性粒细胞","note":"抗寄生虫，参与过敏反应"},{"u":"u5","t":"basophil","zh":"嗜碱性粒细胞","note":"释放组胺，参与过敏反应"},{"u":"u6","t":"amino acid","zh":"氨基酸","note":"蛋白质的构件分子，共 20 种"},{"u":"u6","t":"peptide bond","zh":"肽键","note":"连接氨基酸的酰胺键"},{"u":"u6","t":"protein","zh":"蛋白质","note":"由氨基酸链构成的大分子"},{"u":"u6","t":"nucleic acid","zh":"核酸","note":"包括 DNA 和 RNA"},{"u":"u6","t":"carbohydrate","zh":"糖类","note":"包括单糖、寡糖和多糖"},{"u":"u6","t":"lipid","zh":"脂类","note":"包括脂肪、磷脂和固醇等"},{"u":"u6","t":"saturated fatty acid","zh":"饱和脂肪酸","note":"不含 C=C，碳链直"},{"u":"u6","t":"unsaturated fatty acid","zh":"不饱和脂肪酸","note":"含 C=C，体内常为顺式"},{"u":"u6","t":"triglyceride","zh":"甘油三酯","note":"甘油加三个脂肪酸"},{"u":"u6","t":"phospholipid","zh":"磷脂","note":"两亲性，生物膜主要成分"},{"u":"u6","t":"cholesterol","zh":"胆固醇","note":"调节膜流动性，合成类固醇"},{"u":"u6","t":"ribose","zh":"核糖","note":"RNA 的戊糖"},{"u":"u6","t":"deoxyribose","zh":"脱氧核糖","note":"DNA 的戊糖"},{"u":"u6","t":"purine","zh":"嘌呤","note":"包括腺嘌呤和鸟嘌呤"},{"u":"u6","t":"pyrimidine","zh":"嘧啶","note":"包括胞嘧啶、胸腺嘧啶和尿嘧啶"},{"u":"u6","t":"base","zh":"碱基","note":"含氮杂环化合物"},{"u":"u6","t":"nucleoside","zh":"核苷","note":"碱基与戊糖相连"},{"u":"u6","t":"nucleotide","zh":"核苷酸","note":"核苷加磷酸"},{"u":"u6","t":"ATP","zh":"三磷酸腺苷","note":"细胞能量货币"},{"u":"u7","t":"N-terminus","zh":"N 端","note":"肽链的氨基末端"},{"u":"u7","t":"C-terminus","zh":"C 端","note":"肽链的羧基末端"},{"u":"u7","t":"primary structure","zh":"一级结构","note":"氨基酸残基的排列顺序"},{"u":"u7","t":"secondary structure","zh":"二级结构","note":"α 螺旋、β 折叠等局部折叠"},{"u":"u7","t":"tertiary structure","zh":"三级结构","note":"整条肽链的空间构象"},{"u":"u7","t":"quaternary structure","zh":"四级结构","note":"多个亚基聚合"},{"u":"u7","t":"alpha helix","zh":"α 螺旋","note":"右手螺旋，每圈约 3.6 个残基"},{"u":"u7","t":"beta sheet","zh":"β 折叠","note":"平行或反平行的片层"},{"u":"u7","t":"motif","zh":"基序","note":"二级结构的特定组合"},{"u":"u7","t":"domain","zh":"结构域","note":"可独立折叠的功能区域"},{"u":"u7","t":"subunit","zh":"亚基","note":"四级结构中的单条肽链"},{"u":"u7","t":"conformation","zh":"构象","note":"蛋白质的空间结构"},{"u":"u7","t":"protein folding","zh":"蛋白质折叠","note":"肽链形成有功能构象的过程"},{"u":"u7","t":"chaperone","zh":"分子伴侣","note":"协助折叠，不进入最终产物"},{"u":"u7","t":"heat shock protein (HSP)","zh":"热休克蛋白","note":"应激时表达，帮助蛋白折叠"},{"u":"u7","t":"covalent modification","zh":"共价修饰","note":"如磷酸化、乙酰化"},{"u":"u7","t":"allosteric effect","zh":"别构效应","note":"结合配体后构象改变，影响活性"},{"u":"u7","t":"protein family","zh":"蛋白质家族","note":"序列、结构和功能相似的一组蛋白"},{"u":"u7","t":"denaturation","zh":"变性","note":"空间结构破坏，一级结构保留"},{"u":"u8","t":"DNA","zh":"脱氧核糖核酸","note":"遗传信息的携带者"},{"u":"u8","t":"RNA","zh":"核糖核酸","note":"参与遗传信息表达和调控"},{"u":"u8","t":"double helix","zh":"双螺旋","note":"两条链围绕共同轴盘旋"},{"u":"u8","t":"antiparallel","zh":"反向平行","note":"两条链 5'→3' 方向相反"},{"u":"u8","t":"complementary","zh":"互补","note":"A 与 T/U、G 与 C 配对"},{"u":"u8","t":"base pairing","zh":"碱基配对","note":"通过氢键形成"},{"u":"u8","t":"major groove","zh":"大沟","note":"DNA 双螺旋表面的宽沟"},{"u":"u8","t":"minor groove","zh":"小沟","note":"DNA 双螺旋表面的窄沟"},{"u":"u8","t":"Chargaff's rule","zh":"查加夫规则","note":"A=T，G=C"},{"u":"u8","t":"B-DNA","zh":"B 型 DNA","note":"生理条件下的右手双螺旋"},{"u":"u8","t":"nucleosome","zh":"核小体","note":"DNA 缠绕组蛋白八聚体"},{"u":"u8","t":"chromatin","zh":"染色质","note":"DNA 与蛋白质的复合物"},{"u":"u8","t":"chromosome","zh":"染色体","note":"染色质高度包装形成"},{"u":"u8","t":"gene","zh":"基因","note":"能产生有功能产物的 DNA 序列"},{"u":"u8","t":"messenger RNA (mRNA)","zh":"信使 RNA","note":"蛋白质合成的模板"},{"u":"u8","t":"transfer RNA (tRNA)","zh":"转运 RNA","note":"携带氨基酸到核糖体"},{"u":"u8","t":"ribosomal RNA (rRNA)","zh":"核糖体 RNA","note":"核糖体的重要组分"},{"u":"u8","t":"codon","zh":"密码子","note":"mRNA 上三个碱基决定一个氨基酸"},{"u":"u8","t":"anticodon","zh":"反密码子","note":"tRNA 上识别密码子的三联体"},{"u":"u8","t":"exon","zh":"外显子","note":"保留在成熟 RNA 中的序列"},{"u":"u8","t":"intron","zh":"内含子","note":"被剪接去除的序列"},{"u":"u8","t":"splicing","zh":"剪接","note":"去除内含子，连接外显子"},{"u":"u8","t":"5' cap","zh":"5' 帽","note":"保护 mRNA，促进翻译"},{"u":"u8","t":"poly(A) tail","zh":"poly(A) 尾","note":"提高 mRNA 稳定性"},{"u":"u8","t":"untranslated region (UTR)","zh":"非翻译区","note":"调控翻译和 mRNA 稳定性"},{"u":"u8","t":"non-coding RNA (ncRNA)","zh":"非编码 RNA","note":"不翻译成蛋白质的 RNA"},{"u":"u8","t":"microRNA (miRNA)","zh":"微小 RNA","note":"抑制翻译或降解 mRNA"},{"u":"u8","t":"small interfering RNA (siRNA)","zh":"小干扰 RNA","note":"降解特定 mRNA"},{"u":"u8","t":"long non-coding RNA (lncRNA)","zh":"长链非编码 RNA","note":"长度大于 200 nt 的非编码 RNA"},{"u":"u8","t":"hybridization","zh":"杂交","note":"互补核酸链配对"},{"u":"u8","t":"melting temperature (Tm)","zh":"熔解温度","note":"一半双链解开的温度"},{"u":"u9","t":"plasma membrane","zh":"质膜","note":"细胞与外界环境的边界"},{"u":"u9","t":"fluid mosaic model","zh":"流动镶嵌模型","note":"膜脂流动，蛋白镶嵌其中"},{"u":"u9","t":"lipid bilayer","zh":"脂双层","note":"两亲性脂质定向排列"},{"u":"u9","t":"glycolipid","zh":"糖脂","note":"膜外表面的糖链与脂质相连"},{"u":"u9","t":"glycoprotein","zh":"糖蛋白","note":"蛋白质与糖链共价结合"},{"u":"u9","t":"integral membrane protein","zh":"整合膜蛋白","note":"穿膜或锚入脂双层"},{"u":"u9","t":"peripheral membrane protein","zh":"周围膜蛋白","note":"以较弱方式附着膜表面"},{"u":"u9","t":"transmembrane protein","zh":"跨膜蛋白","note":"穿越脂双层的膜蛋白"},{"u":"u9","t":"lipid raft","zh":"脂筏","note":"富含胆固醇和鞘脂的膜微区"},{"u":"u9","t":"micelle","zh":"胶束","note":"单层脂质围成的球形结构"},{"u":"u9","t":"liposome","zh":"脂质体","note":"脂双层围成的囊泡"},{"u":"u9","t":"transporter","zh":"转运蛋白","note":"介导物质跨膜运输"},{"u":"u9","t":"receptor","zh":"受体","note":"识别并接收胞外信号"},{"u":"u9","t":"cytoskeleton","zh":"细胞骨架","note":"维持形态、运动和胞内运输"},{"u":"u9","t":"microtubule","zh":"微管","note":"直径约 25 nm 的中空管"},{"u":"u9","t":"microfilament","zh":"微丝","note":"直径约 7 nm，由肌动蛋白构成"},{"u":"u9","t":"intermediate filament","zh":"中间丝","note":"直径约 10 nm，组织特异"},{"u":"u9","t":"tubulin","zh":"微管蛋白","note":"微管的单体蛋白"},{"u":"u9","t":"vimentin","zh":"波形蛋白","note":"间充质细胞的中间丝蛋白"},{"u":"u9","t":"keratin","zh":"角蛋白","note":"上皮细胞的中间丝蛋白"},{"u":"u9","t":"nucleation","zh":"成核","note":"聚合反应的起始步骤"},{"u":"u9","t":"dynamic instability","zh":"动态不稳定性","note":"微管正端生长与缩短交替"},{"u":"u9","t":"microtubule organizing center (MTOC)","zh":"微管组织中心","note":"微管成核的中心"},{"u":"u9","t":"centrosome","zh":"中心体","note":"含一对中心粒"},{"u":"u9","t":"basal body","zh":"基体","note":"纤毛和鞭毛的微管组织中心"},{"u":"u9","t":"kinesin","zh":"驱动蛋白","note":"向微管正端运输"},{"u":"u9","t":"dynein","zh":"动力蛋白","note":"向微管负端运输"},{"u":"u9","t":"epithelial-mesenchymal transition (EMT)","zh":"上皮-间质转化","note":"上皮细胞获得迁移能力"},{"u":"u10","t":"ribosome","zh":"核糖体","note":"蛋白质合成的机器"},{"u":"u10","t":"polysome","zh":"多聚核糖体","note":"一个 mRNA 结合多个核糖体"},{"u":"u10","t":"free ribosome","zh":"游离核糖体","note":"合成胞内蛋白"},{"u":"u10","t":"membrane-bound ribosome","zh":"膜结合核糖体","note":"合成分泌蛋白和膜蛋白"},{"u":"u10","t":"endoplasmic reticulum (ER)","zh":"内质网","note":"膜性合成与加工网络"},{"u":"u10","t":"rough endoplasmic reticulum (RER)","zh":"粗面内质网","note":"表面有核糖体，合成蛋白质"},{"u":"u10","t":"smooth endoplasmic reticulum (SER)","zh":"滑面内质网","note":"合成脂质、解毒、储钙"},{"u":"u10","t":"Golgi apparatus","zh":"高尔基体","note":"加工、分选和包装"},{"u":"u10","t":"trans-Golgi network (TGN)","zh":"反面高尔基网络","note":"高尔基体的分选出口"},{"u":"u10","t":"vesicle","zh":"小泡","note":"膜性运输载体"},{"u":"u10","t":"COPI","zh":"COPI 包被小泡","note":"高尔基体到内质网的逆向运输"},{"u":"u10","t":"COPII","zh":"COPII 包被小泡","note":"内质网到高尔基体的运输"},{"u":"u10","t":"clathrin","zh":"网格蛋白","note":"参与胞吞和 TGN 出芽"},{"u":"u10","t":"Rab protein","zh":"Rab 蛋白","note":"小泡运输的分子开关"},{"u":"u10","t":"SNARE","zh":"SNARE 蛋白","note":"介导小泡与靶膜融合"},{"u":"u10","t":"KDEL signal","zh":"KDEL 信号","note":"内质网驻留信号"},{"u":"u10","t":"signal recognition particle (SRP)","zh":"信号识别颗粒","note":"识别信号肽并带到内质网"},{"u":"u10","t":"translocon","zh":"转位通道","note":"新生肽链进入内质网的通道"},{"u":"u10","t":"glycosylation","zh":"糖基化","note":"蛋白质或脂质加上糖链"},{"u":"u10","t":"ER stress","zh":"内质网应激","note":"未折叠蛋白积累引起的应激"},{"u":"u10","t":"ER-associated degradation (ERAD)","zh":"内质网相关降解","note":"降解错误折叠蛋白"},{"u":"u10","t":"endosome","zh":"内体","note":"胞吞物质的分选细胞器"},{"u":"u10","t":"multivesicular body (MVB)","zh":"多泡体","note":"内含多个小泡的晚期内体"},{"u":"u10","t":"exosome","zh":"外泌体","note":"释放到细胞外的囊泡"},{"u":"u10","t":"lysosome","zh":"溶酶体","note":"含酸性水解酶，负责消化"},{"u":"u10","t":"acid hydrolase","zh":"酸性水解酶","note":"溶酶体内的水解酶"},{"u":"u10","t":"V-ATPase","zh":"V 型质子泵","note":"泵入质子，酸化溶酶体"},{"u":"u10","t":"mannose-6-phosphate (M6P)","zh":"甘露糖-6-磷酸","note":"溶酶体酶的分选信号"},{"u":"u10","t":"autophagy","zh":"自噬","note":"自噬体包裹并降解胞内物质"},{"u":"u10","t":"autophagosome","zh":"自噬体","note":"双层膜包裹待降解物"},{"u":"u10","t":"autolysosome","zh":"自噬溶酶体","note":"自噬体与溶酶体融合"},{"u":"u10","t":"phagosome","zh":"吞噬体","note":"吞噬作用形成的囊泡"},{"u":"u10","t":"proteasome","zh":"蛋白酶体","note":"降解泛素化蛋白质"},{"u":"u10","t":"ubiquitin","zh":"泛素","note":"标记待降解的蛋白质"},{"u":"u10","t":"20S proteasome","zh":"20S 蛋白酶体","note":"蛋白酶体的核心降解腔"},{"u":"u11","t":"mitochondrion","zh":"线粒体","note":"细胞能量转换的主要场所"},{"u":"u11","t":"cristae","zh":"嵴","note":"内膜向内折叠形成"},{"u":"u11","t":"mitochondrial matrix","zh":"线粒体基质","note":"含酶、mtDNA 和核糖体"},{"u":"u11","t":"intermembrane space","zh":"膜间隙","note":"内外膜之间的空间"},{"u":"u11","t":"porin","zh":"孔蛋白","note":"外膜上的通道蛋白"},{"u":"u11","t":"VDAC","zh":"电压依赖性阴离子通道","note":"线粒体外膜的主要通道"},{"u":"u11","t":"electron transport chain","zh":"电子传递链","note":"即呼吸链"},{"u":"u11","t":"ATP synthase","zh":"ATP 合酶","note":"利用质子动力势合成 ATP"},{"u":"u11","t":"oxidative phosphorylation","zh":"氧化磷酸化","note":"细胞 ATP 的主要来源"},{"u":"u11","t":"mtDNA","zh":"线粒体 DNA","note":"环状双链，半自主复制"},{"u":"u11","t":"mitophagy","zh":"线粒体自噬","note":"清除损伤的线粒体"},{"u":"u11","t":"reactive oxygen species (ROS)","zh":"活性氧","note":"过多引起氧化应激"},{"u":"u11","t":"apoptosis","zh":"细胞凋亡","note":"程序性细胞死亡"},{"u":"u11","t":"MPTP","zh":"线粒体膜通透性转换孔","note":"开放导致线粒体损伤"},{"u":"u12","t":"nuclear envelope","zh":"核被膜","note":"双层核膜"},{"u":"u12","t":"nuclear pore complex (NPC)","zh":"核孔复合体","note":"介导核质间物质运输"},{"u":"u12","t":"nuclear lamina","zh":"核纤层","note":"内核膜下的纤维网络"},{"u":"u12","t":"lamin","zh":"核纤层蛋白","note":"属于中间丝蛋白家族"},{"u":"u12","t":"euchromatin","zh":"常染色质","note":"较松散，转录活跃"},{"u":"u12","t":"heterochromatin","zh":"异染色质","note":"高度浓缩，转录受抑"},{"u":"u12","t":"karyotype","zh":"核型","note":"染色体的数目和形态特征"},{"u":"u12","t":"histone","zh":"组蛋白","note":"H1、H2A、H2B、H3、H4"},{"u":"u12","t":"linker DNA","zh":"连接 DNA","note":"相邻核小体之间的 DNA"},{"u":"u12","t":"30-nm chromatin fiber","zh":"30 nm 染色质纤维","note":"核小体进一步折叠形成"},{"u":"u12","t":"loop","zh":"袢环","note":"30 nm 纤维折叠成的环状结构"},{"u":"u12","t":"Barr body","zh":"巴氏小体","note":"失活的 X 染色体"},{"u":"u12","t":"centromere","zh":"着丝粒","note":"姐妹染色单体连接的部位"},{"u":"u12","t":"telomere","zh":"端粒","note":"染色体末端的保护结构"},{"u":"u12","t":"chromatin remodeling","zh":"染色质重塑","note":"改变染色质可及性"},{"u":"u12","t":"histone modification","zh":"组蛋白修饰","note":"乙酰化、甲基化等"},{"u":"u12","t":"acetylation","zh":"乙酰化","note":"通常使染色质松散"},{"u":"u12","t":"transcription","zh":"转录","note":"以 DNA 为模板合成 RNA"},{"u":"u12","t":"translation","zh":"翻译","note":"以 mRNA 为模板合成蛋白质"},{"u":"u12","t":"central dogma","zh":"中心法则","note":"DNA→RNA→蛋白质"},{"u":"u12","t":"RNA processing","zh":"RNA 加工","note":"加帽、剪接、加尾"},{"u":"u12","t":"nucleolus","zh":"核仁","note":"rRNA 合成和核糖体组装场所"},{"u":"u12","t":"fibrillar center (FC)","zh":"纤维中心","note":"核仁中央的浅染区"},{"u":"u12","t":"dense fibrillar component (DFC)","zh":"致密纤维组分","note":"rRNA 加工区域"},{"u":"u12","t":"granular component (GC)","zh":"颗粒组分","note":"核糖体前体组装区域"},{"u":"u12","t":"nucleolar organizer region (NOR)","zh":"核仁组织者","note":"含 rRNA 基因的染色体襻环"},{"u":"u12","t":"ribonucleoprotein (RNP)","zh":"核糖核蛋白","note":"RNA 与蛋白质的复合物"},{"u":"u12","t":"Philadelphia chromosome","zh":"费城染色体","note":"BCR-ABL 融合，见于白血病"},{"u":"u12","t":"fluorescence in situ hybridization (FISH)","zh":"荧光原位杂交","note":"定位特定 DNA 序列"}];
+DATA.forEach((w,i)=>{ w.id = 'w'+(i+1); });
+const BY_ID = Object.fromEntries(DATA.map(w=>[w.id,w]));
+const UNIT = Object.fromEntries(UNITS.map(u=>[u.id,u]));
+const KEY = 'fxz_vocab_v1';
+const INTERVALS = [0,1,2,4,7,15];
+let storageOk = true;
+try { localStorage.setItem('__fxz_test','1'); localStorage.removeItem('__fxz_test'); }
+catch(e){ storageOk = false; }
+
+function loadState(){
+  const def = {p:{}, h:{}, goal:20, theme:'auto'};
+  if(!storageOk) return def;
+  try{
+    const raw = localStorage.getItem(KEY);
+    if(!raw) return def;
+    const o = JSON.parse(raw);
+    return {p:o.p||{}, h:o.h||{}, goal:o.goal||20, theme:o.theme||'auto'};
+  }catch(e){ return def; }
+}
+let S = loadState();
+function save(){
+  if(!storageOk) return;
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){ storageOk=false; }
+}
+function pad(n){return String(n).padStart(2,'0')}
+function dkey(d=new Date()){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function pOf(id){
+  if(!S.p[id]) S.p[id]={box:0,due:0,seen:false,right:0,wrong:0,star:false,last:''};
+  return S.p[id];
+}
+function statusOf(w){
+  const p=S.p[w.id];
+  if(!p||!p.seen) return 'new';
+  return p.box>=4?'mastered':'learning';
+}
+function todayCount(){return S.h[dkey()]||0}
+function dueWords(){
+  const now=Date.now();
+  return DATA.filter(w=>{const p=S.p[w.id];return p&&p.seen&&p.box<5&&p.due<=now});
+}
+function newWords(){return DATA.filter(w=>!S.p[w.id]||!S.p[w.id].seen)}
+function streak(){
+  let n=0; const d=new Date();
+  if(!S.h[dkey(d)]) d.setDate(d.getDate()-1);
+  for(let i=0;i<3660;i++){
+    if((S.h[dkey(d)]||0)>0){n++;d.setDate(d.getDate()-1)} else break;
+  }
+  return n;
+}
+function unitStats(uid){
+  const ws=DATA.filter(w=>w.u===uid);
+  let m=0,s=0;
+  ws.forEach(w=>{const st=statusOf(w);if(st==='mastered')m++;else if(st==='learning')s++});
+  return {total:ws.length,mastered:m,learning:s,new:ws.length-m-s};
+}
+let state={tab:'home', libFilter:'all', libQuery:'', libUnit:'all', theme:S.theme};
+let study=null, quiz=null, lastQuizUnit='all';
+document.documentElement.dataset.theme = S.theme;
+
+function applyTheme(t){ S.theme=t; state.theme=t; document.documentElement.dataset.theme=t; save(); renderMe(); }
+function toast(msg){
+  const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('show');
+  clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('show'),1800);
+}
+function speak(e,text){
+  if(e){e.stopPropagation();e.preventDefault()}
+  if(!('speechSynthesis' in window)){toast('当前浏览器不支持朗读');return}
+  try{
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang='en-US'; u.rate=.82; u.pitch=1;
+    const vs=window.speechSynthesis.getVoices().filter(v=>/^en(-|_)/i.test(v.lang));
+    const pref=vs.find(v=>/Samantha|Alex|Ava|Allison|Susan|Google US English|Microsoft Aria|Microsoft Jenny/i.test(v.name))||vs[0];
+    if(pref) u.voice=pref;
+    window.speechSynthesis.speak(u);
+  }catch(err){toast('朗读启动失败')}
+}
+if('speechSynthesis' in window){ window.speechSynthesis.onvoiceschanged=()=>{}; }
+function speakWord(e,id){const w=BY_ID[id];if(w)speak(e,w.t)}
+
+function setActiveTab(tab){
+  document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
+}
+function go(tab){
+  state.tab=tab; study=null; quiz=null;
+  document.body.classList.remove('focus');
+  document.getElementById('view').classList.remove('focus');
+  setActiveTab(tab);
+  if(tab==='home') renderHome();
+  else if(tab==='library') renderLibrary();
+  else if(tab==='quiz') renderQuizHome();
+  else renderMe();
+  window.scrollTo({top:0,behavior:'auto'});
+}
+function goHome(){ go('home'); }
+
+/* ---------------- HOME ---------------- */
+function renderHome(){
+  setActiveTab('home');
+  const total=DATA.length;
+  const mastered=DATA.filter(w=>statusOf(w)==='mastered').length;
+  const learning=DATA.filter(w=>statusOf(w)==='learning').length;
+  const fresh=total-mastered-learning;
+  const due=dueWords().length;
+  const remain=Math.max(0,S.goal-todayCount());
+  const task=due+Math.min(fresh,remain);
+  const tc=todayCount();
+  const pct=Math.min(100,Math.round(tc/S.goal*100));
+  const hour=new Date().getHours();
+  const greet=hour<6?'夜深了':hour<11?'早上好':hour<14?'中午好':hour<18?'下午好':'晚上好';
+  const C=2*Math.PI*52;
+  const off=C*(1-pct/100);
+  const storageBanner=storageOk?'':'<div class="banner"><span>⚠️</span><div><b>当前打开方式不支持本地存储</b><br>学习进度只在本次打开有效。建议把文件存到“文件”App，或使用 Safari 打开。</div></div>';
+  document.getElementById('view').innerHTML=`
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">Fx</div>
+        <div class="brand-txt"><div class="brand-title">分细组 · 医学英语</div><div class="brand-sub">组织学 × 分子细胞生物学</div></div>
+      </div>
+      <button class="icon-btn" onclick="go('me')" aria-label="设置">⚙</button>
+    </div>
+    ${storageBanner}
+    <div class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="hello">${greet}</div>
+          <h1 class="h1">今天背<br>几个词？</h1>
+          <div class="sub" style="margin-top:8px">${total} 个术语 · ${UNITS.length} 个单元<br>连续学习 <b style="color:var(--accent)">${streak()}</b> 天</div>
+        </div>
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent2)"/></linearGradient></defs><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${off.toFixed(1)}"/></svg>
+          <div class="ring-center"><div class="ring-num">${tc}</div><div class="ring-lab">/ ${S.goal} 今日</div></div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn primary" onclick="${task>0?'startStudy()':'startStudy(null,10)'}">${task>0?'开始今日学习':'再复习一组'}</button>
+        <button class="btn ghost" onclick="startStudy(null,10)">随机 10 词</button>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>${due}</b><span>今日待复习</span></div>
+      <div class="stat"><b>${learning}</b><span>学习中</span></div>
+      <div class="stat"><b>${mastered}</b><span>已掌握</span></div>
+    </div>
+    <div class="section-title"><div class="h2">按单元练习</div><button class="link" onclick="go('library')">查看全部</button></div>
+    <div class="unit-grid">
+      ${UNITS.map(u=>{const st=unitStats(u.id);const p=st.total?Math.round(st.mastered/st.total*100):0;return `
+        <button class="unit-card" onclick="startStudy('${u.id}')">
+          <div class="unit-name">${escapeHtml(u.name)}</div>
+          <div class="unit-meta"><span>${st.total} 词</span><span>${p}%</span></div>
+          <div class="mini-bar"><i style="width:${p}%"></i></div>
+        </button>`}).join('')}
+    </div>
+    <div class="footer-note">词表整理自课程讲义 · 点击卡片翻面 · 读音使用系统英文语音</div>
+  `;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---------------- STUDY ---------------- */
+function buildQueue(unitId, extra){
+  const now=Date.now();
+  if(unitId){
+    const ws=DATA.filter(w=>w.u===unitId);
+    return ws.sort((a,b)=>{
+      const pa=S.p[a.id]||{}, pb=S.p[b.id]||{};
+      const sa=pa.seen?(pa.box>=4?2:1):0, sb=pb.seen?(pb.box>=4?2:1):0;
+      if(sa!==sb) return sa-sb;
+      return (pa.due||0)-(pb.due||0);
+    });
+  }
+  if(extra){
+    const pool=shuffle(DATA.filter(w=>{const p=S.p[w.id];return !p||!p.seen||(p.seen&&p.box<4)}));
+    return pool.slice(0,extra);
+  }
+  const due=dueWords().sort((a,b)=>(S.p[a.id].due||0)-(S.p[b.id].due||0));
+  const remain=Math.max(0,S.goal-todayCount());
+  const fresh=shuffle(newWords()).slice(0,remain);
+  return [...due,...fresh];
+}
+function startStudy(unitId, extra){
+  const q=buildQueue(unitId||null, extra||0);
+  if(!q.length){
+    toast('这一轮完成了，去测验或随机再来 10 个');
+    go('quiz'); return;
+  }
+  study={queue:q.map(w=>w.id), idx:0, revealed:false, unit:unitId||null, extra:extra||0, stats:{again:0,hard:0,good:0}};
+  document.body.classList.add('focus');
+  document.getElementById('view').classList.add('focus');
+  renderStudy();
+}
+function renderStudy(){
+  setActiveTab('home');
+  if(!study || study.idx>=study.queue.length){ renderDone(); return; }
+  const w=BY_ID[study.queue[study.idx]];
+  const u=UNIT[w.u];
+  const pct=Math.round(study.idx/study.queue.length*100);
+  const len=w.t.length;
+  const cls=len>34?'xsmall':len>22?'small':'';
+  const p=pOf(w.id);
+  const star=p.star?'on':'';
+  const backNote=w.note?`<div class="note">${escapeHtml(w.note)}</div>`:'';
+  document.getElementById('view').innerHTML=`
+    <div class="flash-wrap">
+      <div class="study-top">
+        <button class="icon-btn" onclick="goHome()" aria-label="返回">←</button>
+        <div class="study-progress">
+          <div class="bar"><i style="width:${pct}%"></i></div>
+          <div class="meta"><span>${escapeHtml(u.name)}</span><span>${study.idx+1} / ${study.queue.length}</span></div>
+        </div>
+        <button class="icon-btn star ${star}" onclick="toggleStar(event)" aria-label="收藏">${p.star?'★':'☆'}</button>
+      </div>
+      <div class="flashcard ${study.revealed?'flipped':''}" id="flashcard" onclick="flipCard()">
+        <div class="card-inner">
+          <div class="card-face front">
+            <div class="card-top">
+              <span class="unit-pill">${escapeHtml(u.short)}</span>
+              <button class="speak" onclick="speakWord(event,'${w.id}')" aria-label="朗读">🔊</button>
+            </div>
+            <div class="term ${cls}">${escapeHtml(w.t)}</div>
+            <div class="term-sub">${p.seen?'复习':'新词'} · ${statusLabel(statusOf(w))}</div>
+            <div class="hint">轻点卡片查看释义</div>
+          </div>
+          <div class="card-face back">
+            <div class="card-top">
+              <span class="unit-pill">${escapeHtml(u.short)}</span>
+              <button class="speak" onclick="speakWord(event,'${w.id}')" aria-label="朗读">🔊</button>
+            </div>
+            <div class="zh">${escapeHtml(w.zh)}</div>
+            ${backNote}
+            <div class="hint">轻点返回英文</div>
+          </div>
+        </div>
+      </div>
+      <div class="grade-row">
+        <button class="grade again" onclick="grade('again')">忘记<small>10 分钟后再来</small></button>
+        <button class="grade hard" onclick="grade('hard')">模糊<small>明天再复习</small></button>
+        <button class="grade good" onclick="grade('good')">记住<small>${p.box>=4?'保持':'进入下一盒'}</small></button>
+      </div>
+      <div class="kbd-tip">空格翻面 · 1 / 2 / 3 选择</div>
+    </div>
+  `;
+}
+function statusLabel(st){return st==='new'?'未学':st==='mastered'?'已掌握':'学习中'}
+function flipCard(){
+  if(!study) return;
+  study.revealed=!study.revealed;
+  const el=document.getElementById('flashcard');
+  if(el) el.classList.toggle('flipped',study.revealed);
+}
+function toggleStar(e){
+  if(e){e.stopPropagation()}
+  if(!study||study.idx>=study.queue.length) return;
+  const w=BY_ID[study.queue[study.idx]]; const p=pOf(w.id);
+  p.star=!p.star; save();
+  const btn=document.querySelector('.study-top .star');
+  if(btn){btn.classList.toggle('on',p.star);btn.textContent=p.star?'★':'☆'}
+  toast(p.star?'已收藏':'已取消收藏');
+}
+function grade(q){
+  if(!study||study.idx>=study.queue.length) return;
+  if(!study.revealed){ flipCard(); toast('先看一眼释义，再选择'); return; }
+  const w=BY_ID[study.queue[study.idx]]; const p=pOf(w.id); const now=Date.now();
+  if(q==='again'){p.box=0;p.due=now+10*60*1000;p.wrong++;study.stats.again++}
+  else if(q==='hard'){p.box=Math.max(1,p.box);p.due=now+24*3600*1000;p.wrong++;study.stats.hard++}
+  else {p.box=Math.min(5,p.box+1);p.due=now+INTERVALS[Math.min(p.box,5)]*24*3600*1000;p.right++;study.stats.good++}
+  p.seen=true; p.last=dkey();
+  S.h[dkey()]=(S.h[dkey()]||0)+1;
+  save();
+  study.idx++; study.revealed=false;
+  renderStudy();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function renderDone(){
+  document.body.classList.add('focus');
+  document.getElementById('view').classList.add('focus');
+  const st=study?study.stats:{again:0,hard:0,good:0};
+  const n=(study?study.queue.length:0);
+  const total=DATA.length;
+  const mastered=DATA.filter(w=>statusOf(w)==='mastered').length;
+  const tc=todayCount();
+  const goalHit=tc>=S.goal;
+  document.getElementById('view').innerHTML=`
+    <div class="done">
+      <div class="done-ico">✓</div>
+      <h2>${goalHit?'今日目标完成':'这一组完成'}</h2>
+      <p>${goalHit?'节奏很好，明天继续。':'学习像滚雪球，稳住节奏最重要。'}</p>
+      <div class="done-stats">
+        <div><b>${n}</b><span>本组词数</span></div>
+        <div><b>${st.good}</b><span>记住</span></div>
+        <div><b>${total-mastered}</b><span>待掌握</span></div>
+      </div>
+      <div class="done-actions">
+        <button class="btn primary" onclick="startStudy(null,10)">再学 10 个</button>
+        <button class="btn ghost" onclick="goHome()">回首页</button>
+      </div>
+      <div class="hint" style="margin-top:18px">今日已学 ${tc} / ${S.goal} 词 · 已掌握 ${mastered} / ${total}</div>
+    </div>
+  `;
+}
+
+/* ---------------- LIBRARY ---------------- */
+function renderLibrary(){
+  setActiveTab('library');
+  const total=DATA.length;
+  document.getElementById('view').innerHTML=`
+    <div class="topbar">
+      <div><div class="h1" style="font-size:24px">词库</div><div class="sub">${total} 个术语 · ${UNITS.length} 个单元</div></div>
+      <button class="icon-btn" onclick="startStudy(null,10)" aria-label="随机学习">🎲</button>
+    </div>
+    <div class="search-wrap">
+      <span class="search-ico">⌕</span>
+      <input class="search" id="libSearch" placeholder="搜索英文、中文或提示…" autocomplete="off" oninput="state.libQuery=this.value;renderLibList()" value="${escapeHtml(state.libQuery)}">
+    </div>
+    <div class="filters" id="filters">
+      ${[['all','全部'],['new','未学'],['learning','学习中'],['mastered','已掌握'],['star','收藏']].map(([k,v])=>`<button class="chip ${state.libFilter===k?'active':''}" onclick="setLibFilter('${k}')">${v}</button>`).join('')}
+      <select class="chip" onchange="state.libUnit=this.value;renderLibList()">
+        <option value="all">全部单元</option>
+        ${UNITS.map(u=>`<option value="${u.id}" ${state.libUnit===u.id?'selected':''}>${escapeHtml(u.name)}</option>`).join('')}
+      </select>
+    </div>
+    <div id="libList"></div>
+    <div class="footer-note">进度自动保存在本机浏览器</div>
+  `;
+  renderLibList();
+}
+function setLibFilter(f){state.libFilter=f;renderLibrary()}
+function filteredWords(){
+  const q=state.libQuery.trim().toLowerCase();
+  return DATA.filter(w=>{
+    if(state.libUnit!=='all' && w.u!==state.libUnit) return false;
+    const st=statusOf(w);
+    if(state.libFilter==='new'&&st!=='new') return false;
+    if(state.libFilter==='learning'&&st!=='learning') return false;
+    if(state.libFilter==='mastered'&&st!=='mastered') return false;
+    if(state.libFilter==='star'&&!(S.p[w.id]&&S.p[w.id].star)) return false;
+    if(q && !(w.t.toLowerCase().includes(q)||w.zh.toLowerCase().includes(q)||(w.note||'').toLowerCase().includes(q))) return false;
+    return true;
+  });
+}
+function renderLibList(){
+  const el=document.getElementById('libList'); if(!el) return;
+  const ws=filteredWords();
+  if(!ws.length){el.innerHTML='<div class="empty"><b>没有匹配的词</b>换个关键词或筛选条件试试</div>';return}
+  const groups={};
+  ws.forEach(w=>{(groups[w.u]=groups[w.u]||[]).push(w)});
+  let html='';
+  UNITS.forEach(u=>{
+    const list=groups[u.id]; if(!list||!list.length) return;
+    const st=unitStats(u.id);
+    html+=`<div class="list-head"><span>${escapeHtml(u.name)}</span><span>${st.mastered}/${st.total} 已掌握</span></div>`;
+    html+=list.map(w=>{
+      const st=statusOf(w); const star=S.p[w.id]&&S.p[w.id].star;
+      return `<button class="word-row" onclick="showWord('${w.id}')">
+        <span class="dot ${st}"></span>
+        <span class="word-main"><span class="word-term">${escapeHtml(w.t)}</span><span class="word-zh">${escapeHtml(w.zh)}</span></span>
+        <span class="star ${star?'on':''}" onclick="toggleListStar(event,'${w.id}')">${star?'★':'☆'}</span>
+      </button>`;
+    }).join('');
+  });
+  el.innerHTML=html;
+}
+function toggleListStar(e,id){
+  e.stopPropagation();
+  const p=pOf(id); p.star=!p.star; save(); renderLibList();
+}
+function showWord(id){
+  const w=BY_ID[id]; const u=UNIT[w.u]; const p=pOf(id); const st=statusOf(w);
+  document.getElementById('sheetCard').innerHTML=`
+    <div class="sheet-handle"></div>
+    <div class="unit-pill">${escapeHtml(u.name)}</div>
+    <div class="sheet-word" style="margin-top:10px">${escapeHtml(w.t)}</div>
+    <div class="sheet-zh">${escapeHtml(w.zh)}</div>
+    ${w.note?`<div class="sheet-note">${escapeHtml(w.note)}</div>`:''}
+    <div style="display:flex;gap:8px;margin-top:12px;font-size:10.5px;color:var(--muted);flex-wrap:wrap">
+      <span>状态：${statusLabel(st)}</span><span>·</span><span>记忆盒：${p.box}/5</span><span>·</span><span>答对 ${p.right} / 答错 ${p.wrong}</span>
+    </div>
+    <div class="sheet-actions">
+      <button class="btn ghost" onclick="speakWord(event,'${id}')">🔊 朗读</button>
+      <button class="btn soft" onclick="toggleSheetStar('${id}')">${p.star?'★ 已收藏':'☆ 收藏'}</button>
+      <button class="btn primary" onclick="startSingle('${id}')">学这个词</button>
+    </div>
+  `;
+  document.getElementById('sheet').classList.add('open');
+}
+function closeSheet(){document.getElementById('sheet').classList.remove('open')}
+function toggleSheetStar(id){const p=pOf(id);p.star=!p.star;save();showWord(id);renderLibList()}
+function startSingle(id){
+  closeSheet();
+  study={queue:[id],idx:0,revealed:false,unit:null,extra:0,stats:{again:0,hard:0,good:0}};
+  document.body.classList.add('focus');document.getElementById('view').classList.add('focus');
+  renderStudy();
+}
+
+/* ---------------- QUIZ ---------------- */
+function renderQuizHome(){
+  setActiveTab('quiz');
+  const due=dueWords().length;
+  document.getElementById('view').innerHTML=`
+    <div class="topbar"><div><div class="h1" style="font-size:24px">测验</div><div class="sub">四选一 · 中英双向 · 即时反馈</div></div></div>
+    <div class="quiz-intro">
+      <h2>来一组快速测验</h2>
+      <p class="sub">从词库随机抽题，答错会自动记入错题回顾。当前有 ${due} 个到期词。</p>
+      <div class="quiz-opts">
+        <button class="quiz-opt" onclick="startQuiz(10)"><span>10 题 · 快速热身</span><small>约 2 分钟</small></button>
+        <button class="quiz-opt" onclick="startQuiz(20)"><span>20 题 · 标准一组</span><small>约 4 分钟</small></button>
+        <button class="quiz-opt" onclick="startQuiz(10,'due')"><span>只考到期词</span><small>${due} 个待复习</small></button>
+      </div>
+      <div style="margin-top:14px">
+        <div class="sub" style="margin-bottom:6px">限定单元（可选）</div>
+        <select class="chip" style="width:100%;padding:11px 14px" id="quizUnit">
+          <option value="all">全部单元</option>
+          ${UNITS.map(u=>`<option value="${u.id}">${escapeHtml(u.name)}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <div class="guide" style="margin-top:16px">
+      <h3>怎么用效果最好</h3>
+      <ol>
+        <li>先过一遍词卡，再做题，别一上来就猜。</li>
+        <li>答错的词会回到学习队列，第二天优先复习。</li>
+        <li>每天 20 词，两周可以过完一轮。</li>
+      </ol>
+    </div>
+  `;
+}
+function makeQuiz(n, scope){
+  const unit=document.getElementById('quizUnit')?.value||'all';
+  lastQuizUnit=unit;
+  let pool=DATA.filter(w=>unit==='all'||w.u===unit);
+  if(scope==='due') pool=dueWords().filter(w=>unit==='all'||w.u===unit);
+  if(pool.length<4){toast('这个范围词太少，换一个吧');return null}
+  pool=shuffle(pool);
+  const qs=[];
+  for(const w of pool){
+    if(qs.length>=n) break;
+    const dir=Math.random()<.5?'en2zh':'zh2en';
+    const correct=dir==='en2zh'?w.zh:w.t;
+    const opts=[correct];
+    const cands=shuffle(DATA.filter(x=>x.id!==w.id));
+    for(const c of cands){
+      const val=dir==='en2zh'?c.zh:c.t;
+      if(!opts.includes(val)) opts.push(val);
+      if(opts.length===4) break;
+    }
+    if(opts.length<4) continue;
+    qs.push({id:w.id,dir,correct,options:shuffle(opts)});
+  }
+  return qs;
+}
+function startQuiz(n, scope){
+  const qs=makeQuiz(n,scope); if(!qs) return;
+  quiz={qs,i:0,score:0,answered:false,selected:null,wrong:[],unit:lastQuizUnit};
+  document.body.classList.remove('focus');document.getElementById('view').classList.remove('focus');
+  renderQuiz();
+}
+function renderQuiz(){
+  if(!quiz) return renderQuizHome();
+  if(quiz.i>=quiz.qs.length) return renderQuizResult();
+  const q=quiz.qs[quiz.i]; const w=BY_ID[q.id];
+  const pct=Math.round(quiz.i/quiz.qs.length*100);
+  document.getElementById('view').innerHTML=`
+    <div class="quiz-top">
+      <button class="icon-btn" onclick="go('quiz')" aria-label="退出">←</button>
+      <div class="quiz-bar"><i style="width:${pct}%"></i></div>
+      <div class="quiz-count">${quiz.i+1}/${quiz.qs.length}</div>
+    </div>
+    <div class="question-card">
+      <div class="q-dir">${q.dir==='en2zh'?'英文 → 中文':'中文 → 英文'}</div>
+      <div class="q-term ${q.dir==='zh2en'?'cn':''}">${escapeHtml(q.dir==='en2zh'?w.t:w.zh)}</div>
+      ${q.dir==='en2zh'&&w.note?`<div class="q-note">${escapeHtml(w.note)}</div>`:''}
+    </div>
+    <div class="answers" id="answers">
+      ${q.options.map((o,i)=>`<button class="answer" data-i="${i}" onclick="answerQuiz(${i})" ${quiz.answered?'disabled':''}><span class="letter">${'ABCD'[i]}</span><span>${escapeHtml(o)}</span></button>`).join('')}
+    </div>
+    ${quiz.answered?`<div class="feedback ${quiz.selected===q.correct?'ok':'no'}">${quiz.selected===q.correct?'✓ 答对了':'✕ 正确答案：'+escapeHtml(q.correct)}</div><button class="btn primary wide" style="margin-top:12px" onclick="nextQuiz()">下一题 →</button>`:''}
+  `;
+  if(quiz.answered){
+    document.querySelectorAll('#answers .answer').forEach(b=>{
+      const t=b.querySelector('span:last-child').textContent;
+      if(t===q.correct) b.classList.add('correct');
+      else if(t===quiz.selected) b.classList.add('wrong');
+    });
+  }
+}
+function answerQuiz(i){
+  if(!quiz||quiz.answered) return;
+  const q=quiz.qs[quiz.i];
+  const chosen=q.options[i];
+  quiz.answered=true; quiz.selected=chosen;
+  if(chosen===q.correct){quiz.score++}
+  else{quiz.wrong.push(q.id); const p=pOf(q.id);p.seen=true;p.box=0;p.due=Date.now()+10*60*1000;p.wrong++;p.last=dkey();save()}
+  renderQuiz();
+}
+function nextQuiz(){
+  if(!quiz) return;
+  quiz.i++; quiz.answered=false; quiz.selected=null;
+  if(quiz.i>=quiz.qs.length) renderQuizResult(); else renderQuiz();
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function renderQuizResult(){
+  const pct=Math.round(quiz.score/quiz.qs.length*100);
+  const wrong=quiz.wrong.map(id=>BY_ID[id]).filter(Boolean);
+  document.getElementById('view').innerHTML=`
+    <div class="quiz-result">
+      <div class="score-ring" style="--score:${pct}"><div><b>${pct}%</b><span>${quiz.score} / ${quiz.qs.length}</span></div></div>
+      <h2 class="h2">${pct>=80?'很稳，继续保持':pct>=60?'及格线以上，再巩固一下':'别急，错题就是重点'}</h2>
+      <p class="sub" style="margin-top:6px">${wrong.length?'答错的词已回到学习队列，明天会优先出现。':'这一组没有错题，漂亮。'}</p>
+      <div class="done-actions" style="margin:20px auto 0">
+        <button class="btn primary" onclick="go('quiz')">再来一组</button>
+        <button class="btn ghost" onclick="go('quiz')">返回</button>
+      </div>
+      ${wrong.length?`<div class="wrong-list"><div class="list-head"><span>错题回顾</span><span>${wrong.length} 个</span></div>${wrong.map(w=>`<div class="word-row"><span class="dot learning"></span><span class="word-main"><span class="word-term">${escapeHtml(w.t)}</span><span class="word-zh">${escapeHtml(w.zh)}</span></span></div>`).join('')}</div>`:''}
+      <div class="footer-note">错题会自动重置记忆盒，下次优先复习</div>
+    </div>
+  `;
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+/* ---------------- ME ---------------- */
+function renderMe(){
+  setActiveTab('me');
+  const total=DATA.length;
+  const mastered=DATA.filter(w=>statusOf(w)==='mastered').length;
+  const learning=DATA.filter(w=>statusOf(w)==='learning').length;
+  const fresh=total-mastered-learning;
+  const days=[]; const max=Math.max(S.goal,...Object.values(S.h),1);
+  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);days.push({d,key:dkey(d),n:S.h[dkey(d)]||0})}
+  const storage=storageOk?'<span style="color:var(--green)">正常</span>':'<span style="color:var(--red)">不可用</span>';
+  document.getElementById('view').innerHTML=`
+    <div class="topbar"><div><div class="h1" style="font-size:24px">我的</div><div class="sub">学习记录与设置</div></div><button class="icon-btn" onclick="goHome()" aria-label="返回">←</button></div>
+    <div class="me-hero">
+      <div class="avatar">Fx</div>
+      <div style="flex:1"><div class="me-name">分细组学习者</div><div class="me-sub">连续 ${streak()} 天 · 今日 ${todayCount()}/${S.goal}</div></div>
+    </div>
+    <div class="big-stats">
+      <div class="big-stat"><b>${mastered}</b><span>已掌握 / ${total}</span></div>
+      <div class="big-stat"><b>${learning}</b><span>学习中</span></div>
+      <div class="big-stat"><b>${fresh}</b><span>未开始</span></div>
+      <div class="big-stat"><b>${streak()}</b><span>连续天数</span></div>
+    </div>
+    <div class="section-title"><div class="h2">最近 7 天</div><span class="sub">每日学习词数</span></div>
+    <div class="week">
+      ${days.map((x,i)=>`<div class="day ${i===6?'today':''}"><div class="day-bar"><i style="height:${x.n?Math.max(4,Math.round(x.n/max*100)):0}%"></i></div><span>${x.n}</span><span>${x.d.getMonth()+1}/${x.d.getDate()}</span></div>`).join('')}
+    </div>
+    <div class="section-title"><div class="h2">设置</div></div>
+    <div class="setting">
+      <div><div class="st">每日目标</div><div class="sd">建议 20 词，约 8–10 分钟</div></div>
+      <div class="seg">${[10,20,30,50].map(n=>`<button class="${S.goal===n?'active':''}" onclick="setGoal(${n})">${n}</button>`).join('')}</div>
+    </div>
+    <div class="setting">
+      <div><div class="st">外观</div><div class="sd">跟随系统或手动切换</div></div>
+      <div class="seg">${[['auto','自动'],['light','浅色'],['dark','深色']].map(([k,v])=>`<button class="${state.theme===k?'active':''}" onclick="applyTheme('${k}')">${v}</button>`).join('')}</div>
+    </div>
+    <div class="setting">
+      <div><div class="st">本地存储</div><div class="sd">进度保存在当前浏览器，不上传服务器</div></div>
+      <div style="font-size:11px;font-weight:750">${storage}</div>
+    </div>
+    <div class="setting" style="display:block">
+      <div class="st" style="margin-bottom:8px">数据</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost sm" onclick="exportProgress()">导出记录</button>
+        <button class="btn ghost sm" style="color:var(--red)" onclick="resetProgress()">清空进度</button>
+      </div>
+    </div>
+    <div class="guide">
+      <h3>在 iPhone 上使用</h3>
+      <ol>
+        <li>在线版：GitHub Pages，电脑关机也能用，网址固定不变。</li>
+        <li>Safari 打开后点“分享”→“添加到主屏幕”，进度保存在手机浏览器里。</li>
+        <li>没有网络时看 PDF；局域网码和本地 HTML 作为备用。</li>
+      </ol>
+      <div style="margin-top:8px;color:var(--muted);font-size:11px">所有词条、样式和脚本都在一个文件里；在线版不依赖电脑，“朗读”使用手机系统英文语音。</div>
+    </div>
+    <div class="footer-note">词表整理自《分细组》课程讲义<br>共 ${total} 词 · 12 个单元 · 版本 1.0</div>
+  `;
+}
+function setGoal(n){S.goal=n;save();renderMe();toast('每日目标已设为 '+n+' 词')}
+function exportProgress(){
+  try{
+    const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='分细组背单词进度.json';a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+    toast('已导出学习记录');
+  }catch(e){toast('导出失败，可截图保存')}
+}
+function resetProgress(){
+  if(!confirm('确定清空所有学习进度、收藏和统计吗？此操作不可撤销。')) return;
+  S={p:{},h:{},goal:S.goal,theme:S.theme};save();toast('进度已清空');renderMe();
+}
+
+/* ---------------- INIT ---------------- */
+document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+document.addEventListener('keydown',e=>{
+  if(!study||study.idx>=study.queue.length) return;
+  if(e.code==='Space'){e.preventDefault();flipCard()}
+  else if(e.key==='1')grade('again');
+  else if(e.key==='2')grade('hard');
+  else if(e.key==='3')grade('good');
+});
+go('home');
+</script>
+</body>
+</html>
