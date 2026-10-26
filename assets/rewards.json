@@ -1,30 +1,5 @@
 [
  {
-  "src": "assets/rewards/ww_004.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_001.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_003.webp",
-  "name": "Lupa",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_054.webp",
-  "name": "Lupa",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_007.webp",
-  "name": "德妮亚",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_064.webp",
   "name": "德妮亚",
   "series": "鸣潮"
@@ -35,18 +10,8 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_010.webp",
-  "name": "希格丽卡",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_044.webp",
   "name": "希格丽卡",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_011.webp",
-  "name": "今汐",
   "series": "鸣潮"
  },
  {
@@ -55,18 +20,8 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_015.webp",
-  "name": "Hsin",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_052.webp",
   "name": "Hsin",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_012.webp",
-  "name": "漂泊者",
   "series": "鸣潮"
  },
  {
@@ -75,43 +30,8 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_020.webp",
-  "name": "赞妮",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_097.webp",
-  "name": "赞妮",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_022.webp",
-  "name": "Tacet Mark",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_021.webp",
   "name": "Tacet Mark",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_023.webp",
-  "name": "爱弥斯",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_066.webp",
-  "name": "爱弥斯",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_042.webp",
-  "name": "菲比",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_043.webp",
-  "name": "菲比",
   "series": "鸣潮"
  },
  {
@@ -120,77 +40,12 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_053.webp",
-  "name": "坎特蕾拉",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_123.webp",
-  "name": "坎特蕾拉",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_051.webp",
-  "name": "Lily",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_060.webp",
-  "name": "Lily",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_056.webp",
-  "name": "Mornye",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_072.webp",
-  "name": "Mornye",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_058.webp",
-  "name": "千咲",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_057.webp",
   "name": "千咲",
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_059.webp",
-  "name": "吟霖",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_062.webp",
-  "name": "Hiyuki",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_065.webp",
-  "name": "卜灵",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_069.webp",
-  "name": "守岸人",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_070.webp",
-  "name": "弗洛洛",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_071.webp",
-  "name": "Lynae",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_083.webp",
   "name": "Lynae",
   "series": "鸣潮"
  },
@@ -205,28 +60,13 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_100.webp",
-  "name": "折枝",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_110.webp",
-  "name": "Suisui",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_130.webp",
   "name": "Suisui",
   "series": "鸣潮"
  },
  {
   "src": "assets/rewards/ww_109.webp",
   "name": "Qingxiao",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_113.webp",
-  "name": "鸣潮角色",
   "series": "鸣潮"
  },
  {
@@ -245,52 +85,7 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_121.webp",
-  "name": "Hsin (Moon Fox)",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_124.webp",
-  "name": "夏空",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_006.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_005.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_002.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_009.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_016.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_013.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_014.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_017.webp",
   "name": "朔明",
   "series": "鸣潮"
  },
@@ -305,27 +100,12 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_024.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_025.webp",
   "name": "朔明",
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_026.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
   "src": "assets/rewards/ww_027.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/ww_029.webp",
   "name": "朔明",
   "series": "鸣潮"
  },
@@ -345,22 +125,7 @@
   "series": "鸣潮"
  },
  {
-  "src": "assets/rewards/ww_033.webp",
-  "name": "朔明",
-  "series": "鸣潮"
- },
- {
-  "src": "assets/rewards/wz_gsl_003.webp",
-  "name": "公孙离",
-  "series": "王者荣耀"
- },
- {
   "src": "assets/rewards/wz_gsl_001.webp",
-  "name": "公孙离",
-  "series": "王者荣耀"
- },
- {
-  "src": "assets/rewards/wz_gsl_009.webp",
   "name": "公孙离",
   "series": "王者荣耀"
  },
@@ -371,16 +136,6 @@
  },
  {
   "src": "assets/rewards/wz_gsl_010.webp",
-  "name": "公孙离",
-  "series": "王者荣耀"
- },
- {
-  "src": "assets/rewards/wz_gsl_002.webp",
-  "name": "公孙离",
-  "series": "王者荣耀"
- },
- {
-  "src": "assets/rewards/wz_gsl_011.webp",
   "name": "公孙离",
   "series": "王者荣耀"
  },
@@ -400,11 +155,6 @@
   "series": "王者荣耀"
  },
  {
-  "src": "assets/rewards/wz_gsl_012.webp",
-  "name": "公孙离",
-  "series": "王者荣耀"
- },
- {
   "src": "assets/rewards/wz_gsl_013.webp",
   "name": "公孙离",
   "series": "王者荣耀"
@@ -412,21 +162,6 @@
  {
   "src": "assets/rewards/wz_gsl_007.webp",
   "name": "公孙离",
-  "series": "王者荣耀"
- },
- {
-  "src": "assets/rewards/wz_005.webp",
-  "name": "Lady Sun",
-  "series": "王者荣耀"
- },
- {
-  "src": "assets/rewards/wz_004.webp",
-  "name": "Lady Sun",
-  "series": "王者荣耀"
- },
- {
-  "src": "assets/rewards/wz_002.webp",
-  "name": "Lady Sun",
   "series": "王者荣耀"
  },
  {
@@ -440,37 +175,12 @@
   "series": "王者荣耀"
  },
  {
-  "src": "assets/rewards/anime_005.webp",
-  "name": "二次元角色",
-  "series": "东方Project"
- },
- {
   "src": "assets/rewards/anime_003.webp",
   "name": "二次元角色",
   "series": "明日方舟"
  },
  {
   "src": "assets/rewards/anime_006.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
-  "src": "assets/rewards/anime_007.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
-  "src": "assets/rewards/anime_004.webp",
-  "name": "二次元角色",
-  "series": "东方Project"
- },
- {
-  "src": "assets/rewards/anime_002.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
-  "src": "assets/rewards/anime_001.webp",
   "name": "二次元角色",
   "series": "日漫"
  },
@@ -485,19 +195,9 @@
   "series": "日漫"
  },
  {
-  "src": "assets/rewards/anime_013.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
   "src": "assets/rewards/anime_014.webp",
   "name": "二次元角色",
   "series": "东方Project"
- },
- {
-  "src": "assets/rewards/anime_009.webp",
-  "name": "二次元角色",
-  "series": "明日方舟"
  },
  {
   "src": "assets/rewards/anime_011.webp",
@@ -505,22 +205,7 @@
   "series": "明日方舟"
  },
  {
-  "src": "assets/rewards/anime_008.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
-  "src": "assets/rewards/anime_017.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
   "src": "assets/rewards/anime_018.webp",
-  "name": "二次元角色",
-  "series": "明日方舟"
- },
- {
-  "src": "assets/rewards/anime_019.webp",
   "name": "二次元角色",
   "series": "明日方舟"
  },
@@ -530,27 +215,7 @@
   "series": "日漫"
  },
  {
-  "src": "assets/rewards/anime_015.webp",
-  "name": "二次元角色",
-  "series": "明日方舟"
- },
- {
-  "src": "assets/rewards/anime_016.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
   "src": "assets/rewards/anime_022.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
-  "src": "assets/rewards/anime_024.webp",
-  "name": "二次元角色",
-  "series": "日漫"
- },
- {
-  "src": "assets/rewards/anime_026.webp",
   "name": "二次元角色",
   "series": "日漫"
  },
@@ -558,21 +223,6 @@
   "src": "assets/rewards/anime_027.webp",
   "name": "二次元角色",
   "series": "蔚蓝档案"
- },
- {
-  "src": "assets/rewards/anime_028.webp",
-  "name": "二次元角色",
-  "series": "东方Project"
- },
- {
-  "src": "assets/rewards/anime_029.webp",
-  "name": "二次元角色",
-  "series": "明日方舟"
- },
- {
-  "src": "assets/rewards/anime_023.webp",
-  "name": "二次元角色",
-  "series": "明日方舟"
  },
  {
   "src": "assets/rewards/anime_025.webp",
@@ -588,5 +238,20 @@
   "src": "assets/rewards/anime_033.webp",
   "name": "二次元角色",
   "series": "日漫"
+ },
+ {
+  "src": "assets/rewards/ww_official_changli.webp",
+  "name": "Changli",
+  "series": "鸣潮·官方"
+ },
+ {
+  "src": "assets/rewards/ww_official_jinhsi.webp",
+  "name": "Jinhsi",
+  "series": "鸣潮·官方"
+ },
+ {
+  "src": "assets/rewards/ww_official_camellya.webp",
+  "name": "Camellya",
+  "series": "鸣潮·官方"
  }
 ]
